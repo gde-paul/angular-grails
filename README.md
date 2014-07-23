@@ -47,9 +47,9 @@ This is a generalized service used to make REST calls. The constants **rootUrl**
 
 **Config:**
 ```javascript
-    // Modules should be previously defined
-    angular.module('angularGrails.constants').constant('rootUrl', '/');
-    angular.module('myApp').constant('restUrl', '/api/book');
+// Modules should be previously defined
+angular.module('angularGrails.constants').constant('rootUrl', '/');
+angular.module('myApp').constant('restUrl', '/api/book');
 ```
 
 Here's an example of how you might use each available method:
@@ -81,26 +81,26 @@ crudService.delete(1);
 Each of the above functions can also accept an optional success and error callback function:
 
 ```javascript
-  var successFunction = function(response) {
-    console.log("It worked!");
-  };
-  
-  var errorFunction = function(response) {
-    console.log("Uh oh!");
-  };
-  
-  crudService.delete(1, successFunction, errorFunction);
+var successFunction = function(response) {
+console.log("It worked!");
+};
+
+var errorFunction = function(response) {
+console.log("Uh oh!");
+};
+
+crudService.delete(1, successFunction, errorFunction);
 
 ````
 #### flash
 Used in conjunction with the **flash-message** directive below. This service allows you to easily set different messages in your app. Each time a flash message is set it overrides the previous one.
 
 ```javascript
-  flash.success("Everything is fine");
-  flash.warning("Something bad is about to happen");
-  flash.error("Uh oh, something bad did happen");
-  flash.info("Something good or bad might happen");
-  flash.clear(); // Clear messages
+flash.success("Everything is fine");
+flash.warning("Something bad is about to happen");
+flash.error("Uh oh, something bad did happen");
+flash.info("Something good or bad might happen");
+flash.clear(); // Clear messages
 
 ```
 
@@ -144,7 +144,7 @@ This directive allows you to keep track of the current sort state of a table, an
 ```html
 <thead sort-header ng-model="sort" on-sort="reloadData()">
     <th sortable-column title="Id" property="id"></th>
-    <th sortable-column title="Name" property="lastName"></th>
+    <th sortable-column title="Name" property="name"></th>
 </thead>
 ```
 
