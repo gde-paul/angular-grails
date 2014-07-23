@@ -81,26 +81,26 @@ crudService.delete(1);
 Each of the above functions can also accept an optional success and error callback function:
 
 ```javascript
-  var successFunction = function(response) {
-    console.log("It worked!");
-  };
-  
-  var errorFunction = function(response) {
-    console.log("Uh oh!");
-  };
-  
-  crudService.delete(1, successFunction, errorFunction);
+var successFunction = function(response) {
+console.log("It worked!");
+};
+
+var errorFunction = function(response) {
+console.log("Uh oh!");
+};
+
+crudService.delete(1, successFunction, errorFunction);
 
 ````
 #### flash
 Used in conjunction with the **flash-message** directive below. This service allows you to easily set different messages in your app. Each time a flash message is set it overrides the previous one.
 
 ```javascript
-  flash.success("Everything is fine");
-  flash.warning("Something bad is about to happen");
-  flash.error("Uh oh, something bad did happen");
-  flash.info("Something good or bad might happen");
-  flash.clear(); // Clear messages
+flash.success("Everything is fine");
+flash.warning("Something bad is about to happen");
+flash.error("Uh oh, something bad did happen");
+flash.info("Something good or bad might happen");
+flash.clear(); // Clear messages
 
 ```
 
