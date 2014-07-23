@@ -144,7 +144,7 @@ This directive allows you to keep track of the current sort state of a table, an
 ```html
 <thead sort-header ng-model="sort" on-sort="reloadData()">
     <th sortable-column title="Id" property="id"></th>
-    <th sortable-column title="Name" property="lastName"></th>
+    <th sortable-column title="Name" property="name"></th>
 </thead>
 ```
 
