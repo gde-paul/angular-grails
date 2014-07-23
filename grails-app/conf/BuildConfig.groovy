@@ -47,6 +47,6 @@ grails.project.dependency.resolution = {
 
         compile ':sass-asset-pipeline:1.8.0'
         compile ":angular-template-asset-pipeline:1.2.4"
-        compile ":angular-annotate-asset-pipeline:1.0.1"
+        compile ":angular-annotate-asset-pipeline:1.0.2"
     }
 }
