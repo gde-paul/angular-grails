@@ -47,9 +47,9 @@ This is a generalized service used to make REST calls. The constants **rootUrl**
 
 **Config:**
 ```javascript
-    // Modules should be previously defined
-    angular.module('angularGrails.constants').constant('rootUrl', '/');
-    angular.module('myApp').constant('restUrl', '/api/book');
+// Modules should be previously defined
+angular.module('angularGrails.constants').constant('rootUrl', '/');
+angular.module('myApp').constant('restUrl', '/api/book');
 ```
 
 Here's an example of how you might use each available method:
