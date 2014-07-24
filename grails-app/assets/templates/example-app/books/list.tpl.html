@@ -7,6 +7,7 @@
 
     <thead sort-header ng-model="sort" on-sort="reload()">
         <th sortable-column title="Id" property="id"></th>
+        <th>Author</th>
         <th sortable-column title="Title" property="title"></th>
         <th>&nbsp;</th>
     </thead>
@@ -14,6 +15,7 @@
         <tr ng-repeat="item in items.items">
             <td><a href="#/show/{{item.id}}">{{item.id}}</a></td>
             <td>{{item.title}}</td>
+            <td>{{item.author.firstName}} {{item.author.lastName}}</td>
             <td>
                 <button crud-button="edit" resource="item" ></button>
                 <button crud-button="delete" resource="item" after-action="reload()"></button>

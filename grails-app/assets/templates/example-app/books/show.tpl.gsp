@@ -6,7 +6,7 @@
 <table class="table table-bordered">
     <f:with bean="${new Book()}">
         <f:display property="title">item.title</f:display>
-        <f:display property="author">item.author.firstName</f:display>
+        <f:display property="author">item.author.firstName + ' ' + item.author.lastName</f:display>
         <f:display property="price">item.price</f:display>
         <f:display property="publishDate">item.publishDate</f:display>
         <f:display property="pageCount">item.pageCount</f:display>

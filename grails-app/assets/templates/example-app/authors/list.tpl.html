@@ -13,7 +13,7 @@
     <tbody>
         <tr ng-repeat="item in items.items">
             <td><a href="#/show/{{item.id}}">{{item.id}}</a></td>
-            <td>{{item.lastName}}, {{item.firstName}}</td>
+            <td>{{item.firstName}} {{item.lastName}}</td>
             <td>
                 <button crud-button="edit" resource="item" ></button>
                 <button crud-button="delete" resource="item" after-action="reload()"></button>
