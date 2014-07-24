@@ -1,5 +1,7 @@
 Angular Grails
 ================================
+[![Build Status](https://drone.io/github.com/craigburke/angular-grails/status.png)](https://drone.io/github.com/craigburke/angular-grails/latest)
+
 This is an example app showcasing some of the ways that I use Angular within a Grails project. This is a proof of concept but it should serve as a nice starting point for anyone wanting to use the two frameworks together.
 
 This project also makes use of [Twitter Bootstrap](http://getbootstrap.com/), [Angular UI Bootstrap](http://angular-ui.github.io/bootstrap/) and [Font Awesome](http://fortawesome.github.io/Font-Awesome/).
