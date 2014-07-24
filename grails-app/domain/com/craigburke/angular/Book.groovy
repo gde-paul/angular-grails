@@ -9,7 +9,11 @@ class Book {
     Float price
 
     static constraints = {
-        title(blank: false)
+        title(required: true, blank: false)
+        author(required: true)
+        publishDate(required: true)
+        pageCount(required: true)
+        price(required: true)
     }
 
 }

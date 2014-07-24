@@ -5,8 +5,8 @@ class Author {
     String lastName
 
     static constraints = {
-        firstName(blank: false)
-        lastName(blank: false)
+        firstName(required: true, blank: false)
+        lastName(required: true, blank: false)
     }
 
 }
