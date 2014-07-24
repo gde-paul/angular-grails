@@ -14,8 +14,8 @@
     <tbody>
         <tr ng-repeat="item in items.items">
             <td><a href="#/show/{{item.id}}">{{item.id}}</a></td>
-            <td>{{item.title}}</td>
             <td>{{item.author.firstName}} {{item.author.lastName}}</td>
+            <td>{{item.title}}</td>
             <td>
                 <button crud-button="edit" resource="item" ></button>
                 <button crud-button="delete" resource="item" after-action="reload()"></button>
