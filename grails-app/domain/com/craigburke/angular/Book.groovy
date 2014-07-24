@@ -8,4 +8,8 @@ class Book {
     Integer pageCount
     Float price
 
+    static constraints = {
+        title(blank: false)
+    }
+
 }

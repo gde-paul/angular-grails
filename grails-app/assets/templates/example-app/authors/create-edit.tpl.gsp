@@ -7,7 +7,7 @@
 
 <div flash-message ></div>
 
-<form name="form" class="form-horizontal" role="form">
+<form name="form" class="form-horizontal" role="form" novalidate>
 
     <f:with bean="${new Author()}">
         <f:field property="firstName" input-ng-model="item.firstName" />
