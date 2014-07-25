@@ -56,6 +56,7 @@
 
             <h3>Links</h3>
             <ul>
+                <li><a href="http://www.craigburke.com/2014/07/24/angular-grails-asset-pipeline.html">AngularJS, Grails and the Asset Pipeline</a></li>
                 <li><a href="https://github.com/craigburke/angular-grails">Project on Github</a></li>
             </ul>
 
