@@ -3,9 +3,7 @@
 
 'use strict';
 
-var flashDirectives = angular.module('angularGrails.directives.flash', ['angularGrails.services']);
-
-flashDirectives.directive('flashMessage', function(flash) {
+function flashMessage(FlashService) {
     return {
         restrict: 'EA',
         replace: true,
@@ -13,9 +11,9 @@ flashDirectives.directive('flashMessage', function(flash) {
         link: function($scope) {
             $scope.getMessageClass = function(type) {
                 switch(type) {
-                    case flash.TYPES.ERROR:
+                    case FlashService.TYPES.ERROR:
                         return "alert-danger";
-                    case flash.TYPES.WARN:
+                    case FlashService.TYPES.WARN:
                         return "alert-warning";
                     default:
                         return "alert-" + type;
@@ -27,15 +25,15 @@ flashDirectives.directive('flashMessage', function(flash) {
             };
 
             $scope.close = function() {
-                flash.clear();
+                FlashService.clear();
             };
 
             var loadMessage = function() {
-                $scope.flash = flash.get();
+                $scope.flash = FlashService.get();
             };
 
             $scope.$on('$destroy', function () {
-                flash.clear();
+                FlashService.clear();
             });
 
             $scope.$on('flash:messageChange', loadMessage);
@@ -43,6 +41,8 @@ flashDirectives.directive('flashMessage', function(flash) {
             loadMessage();
         },
         templateUrl: 'flash-message.html'
-
     }
-});
+}
+
+angular.module('angularGrails.directives.flash', ['angularGrails.services'])
+    .directive('flashMessage', flashMessage);

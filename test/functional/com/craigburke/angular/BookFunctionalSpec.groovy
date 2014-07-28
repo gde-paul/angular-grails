@@ -6,8 +6,6 @@ import geb.spock.GebReportingSpec
 class BookFunctionalSpec extends GebReportingSpec {
 
     def "should be able to view list page"() {
-        given:
-
         when:
         to BookListPage
 
@@ -32,7 +30,7 @@ class BookFunctionalSpec extends GebReportingSpec {
         at BookCreatePage
 
         when:
-        bookTitle = "New Book"
+        bookTitle = "Test Book"
         author = "Craig Burke"
         price = "33"
         publishDate = "2015-01-01"
@@ -42,7 +40,7 @@ class BookFunctionalSpec extends GebReportingSpec {
         saveButton.click()
 
         then:
-        waitFor { at BookShowPage }
+        at BookShowPage
 
         and:
         successMessage.displayed
@@ -56,10 +54,10 @@ class BookFunctionalSpec extends GebReportingSpec {
         to BookListPage
 
         and:
-        rows[0].editButton.click()
+        rows.find {it.bookTitle == "Test Book"}.editButton.click()
 
         then:
-        waitFor { at BookEditPage }
+        at BookEditPage
 
         when:
         bookTitle = ""
@@ -77,7 +75,7 @@ class BookFunctionalSpec extends GebReportingSpec {
         saveButton.click()
 
         then:
-        waitFor { at BookShowPage }
+        at BookShowPage
 
         and:
         successMessage.displayed
@@ -92,7 +90,7 @@ class BookFunctionalSpec extends GebReportingSpec {
         to BookListPage
 
         and:
-        rows[0]?.deleteButton.click()
+        rows.find {it.bookTitle == "Foo Book"}.deleteButton.click()
 
         then:
         at BookListPage

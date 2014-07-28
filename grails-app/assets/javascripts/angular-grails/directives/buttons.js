@@ -3,9 +3,7 @@
 
 'use strict';
 
-var buttonsDirectives = angular.module('angularGrails.directives.buttons', ['angularGrails.services']);
-
-buttonsDirectives.directive('crudButton', function(crudService, $location, resourceName, flash) {
+function crudButton($location, CrudService, FlashService, resourceName) {
     return {
         restrict: 'EA',
         replace: true,
@@ -15,92 +13,121 @@ buttonsDirectives.directive('crudButton', function(crudService, $location, resou
             isDisabled: '=',
             afterAction: '&'
         },
-        link: function($scope) {
+        link: function ($scope) {
 
-            var createFn = function() {
+            var createFn = function () {
                 $location.path("/create");
-                if ($scope.afterAction) { $scope.afterAction(); }
+                if ($scope.afterAction) {
+                    $scope.afterAction();
+                }
             };
 
-            var editFn = function() {
+            var editFn = function () {
                 $location.path("/edit/" + $scope.resource.id);
-                if ($scope.afterAction) { $scope.afterAction(); }
+                if ($scope.afterAction) {
+                    $scope.afterAction();
+                }
             };
 
-            var saveFn = function() {
-                var errorFunction = function(data) {
+            var saveFn = function () {
+                var errorFunction = function (data) {
                     var messages = [];
-                    angular.forEach(data.data.errors, function(error) {
+                    angular.forEach(data.data.errors, function (error) {
                         messages.push(error.message);
                     });
 
-                    flash.error(messages);
+                    FlashService.error(messages);
                 };
 
                 if ($scope.resource.id) {
-                    crudService.update($scope.resource,
-                        function(response) {
+                    CrudService.update($scope.resource,
+                        function (response) {
                             $location.path('/show/' + response.id);
-                            if ($scope.afterAction) { $scope.afterAction(); }
+                            if ($scope.afterAction) {
+                                $scope.afterAction();
+                            }
                             $scope.$on('$destroy', function () {
-                                flash.success(resourceName + " was updated");
+                                FlashService.success(resourceName + " was updated");
                             });
                         },
                         errorFunction)
                 }
                 else {
-                    crudService.save($scope.resource,
-                        function(response) {
+                    CrudService.save($scope.resource,
+                        function (response) {
                             $location.path('/show/' + response.id);
-                            if ($scope.afterAction) { $scope.afterAction(); }
+                            if ($scope.afterAction) {
+                                $scope.afterAction();
+                            }
                             $scope.$on('$destroy', function () {
-                                flash.success(resourceName + " was saved");
+                                FlashService.success(resourceName + " was saved");
                             });
                         },
                         errorFunction)
                 }
             };
 
-            var deleteFn = function() {
-                var successFn = function() {
-                    flash.success(resourceName + ' was successfully deleted');
-                    if ($scope.afterAction) { $scope.afterAction(); }
+            var deleteFn = function () {
+                var successFn = function () {
+                    FlashService.success(resourceName + ' was successfully deleted');
+                    if ($scope.afterAction) {
+                        $scope.afterAction();
+                    }
                 };
 
-                var errorFn = function() {
-                    flash.error("Couldn't delete " + resourceName);
+                var errorFn = function () {
+                    FlashService.error("Couldn't delete " + resourceName);
                 };
 
-                crudService.delete($scope.resource.id, successFn, errorFn);
+                CrudService.delete($scope.resource.id, successFn, errorFn);
             };
 
-            var cancelFn = function() {
-                flash.clear();
+            var cancelFn = function () {
+                FlashService.clear();
                 $location.path("/");
-                if ($scope.afterAction) { $scope.afterAction(); }
+                if ($scope.afterAction) {
+                    $scope.afterAction();
+                }
             };
 
-            $scope.onClick = function() {
+            $scope.onClick = function () {
                 switch ($scope.crudButton) {
-                    case "create" : createFn(); break;
-                    case "edit" : editFn(); break;
-                    case "delete" : deleteFn(); break;
-                    case "save" : saveFn(); break;
-                    case "cancel" : cancelFn(); break;
+                    case "create" :
+                        createFn();
+                        break;
+                    case "edit" :
+                        editFn();
+                        break;
+                    case "delete" :
+                        deleteFn();
+                        break;
+                    case "save" :
+                        saveFn();
+                        break;
+                    case "cancel" :
+                        cancelFn();
+                        break;
                 }
             }
         },
-        templateUrl: function(element, attrs) {
-            switch(attrs.crudButton) {
-                case "create": return "create-button.html";
-                case "edit": return "edit-button.html";
-                case "delete": return "delete-button.html";
-                case "save": return "save-button.html";
-                case "cancel": return "cancel-button.html";
+        templateUrl: function (element, attrs) {
+            switch (attrs.crudButton) {
+                case "create":
+                    return "create-button.html";
+                case "edit":
+                    return "edit-button.html";
+                case "delete":
+                    return "delete-button.html";
+                case "save":
+                    return "save-button.html";
+                case "cancel":
+                    return "cancel-button.html";
             }
 
         }
     }
-});
+}
 
+angular.module('angularGrails.directives.buttons', ['angularGrails.services'])
+    .directive('crudButton', crudButton);
 

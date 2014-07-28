@@ -1,6 +1,4 @@
-var controllers = angular.module('angularGrails.controllers', []);
-
-controllers.controller('DefaultListCtrl', function($scope, crudService, items, pageSize) {
+function DefaultListCtrl($scope, CrudService, items, pageSize) {
     $scope.items = items;
     $scope.pageSize = pageSize;
     $scope.page = 1;
@@ -12,7 +10,7 @@ controllers.controller('DefaultListCtrl', function($scope, crudService, items, p
             angular.extend(params, $scope.sort);
         }
 
-        crudService.list(params).then(function(items) {
+        CrudService.list(params).then(function(items) {
             $scope.items = items;
         });
     };
@@ -21,12 +19,17 @@ controllers.controller('DefaultListCtrl', function($scope, crudService, items, p
         $scope.page = 1;
         $scope.load();
     }
-});
+}
 
-controllers.controller('DefaultShowCtrl', function($scope, item) {
+function DefaultShowCtrl($scope, item) {
     $scope.item = item;
-});
+};
 
-controllers.controller('DefaultCreateEditCtrl', function($scope, item) {
+function DefaultCreateEditCtrl($scope, item) {
     $scope.item = item;
-});
+}
+
+angular.module('angularGrails.controllers', [])
+    .controller('DefaultListCtrl', DefaultListCtrl)
+    .controller('DefaultShowCtrl', DefaultShowCtrl)
+    .controller('DefaultCreateEditCtrl', DefaultCreateEditCtrl);

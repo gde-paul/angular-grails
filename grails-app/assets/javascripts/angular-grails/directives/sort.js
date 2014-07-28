@@ -3,9 +3,7 @@
 
 'use strict';
 
-var sortDirectives = angular.module('angularGrails.directives.sort', []);
-
-sortDirectives.directive('sortHeader', function() {
+function sortHeader() {
     return {
         restrict: 'EA',
         replace: false,
@@ -35,9 +33,9 @@ sortDirectives.directive('sortHeader', function() {
             return this;
         }
     }
-});
+}
 
-sortDirectives.directive('sortableColumn', function() {
+function sortableColumn() {
     return {
         restrict: 'EA',
         replace: true,
@@ -60,5 +58,8 @@ sortDirectives.directive('sortableColumn', function() {
         },
         templateUrl: 'sortable-column.html'
     }
+}
 
-});
+angular.module('angularGrails.directives.sort', [])
+    .directive('sortHeader', sortHeader)
+    .directive('sortableColumn', sortableColumn);

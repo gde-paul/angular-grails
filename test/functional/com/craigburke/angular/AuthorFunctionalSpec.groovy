@@ -37,7 +37,7 @@ class AuthorFunctionalSpec extends GebReportingSpec {
         saveButton.click()
 
         then:
-        waitFor { at AuthorShowPage }
+        at AuthorShowPage
 
         and:
         successMessage.displayed
@@ -51,10 +51,10 @@ class AuthorFunctionalSpec extends GebReportingSpec {
         to AuthorListPage
 
         and:
-        rows[0].editButton.click()
+        rows.find {it.name == "Foo Bar"}.editButton.click()
 
         then:
-        waitFor { at AuthorEditPage }
+        at AuthorEditPage
 
         when:
         firstName = ""
@@ -66,8 +66,8 @@ class AuthorFunctionalSpec extends GebReportingSpec {
         at AuthorEditPage
 
         when:
-        firstName = "Craig"
-        lastName = "Burke"
+        firstName = "Foo"
+        lastName = "Bar!"
 
         and:
         saveButton.click()
@@ -88,7 +88,7 @@ class AuthorFunctionalSpec extends GebReportingSpec {
         to AuthorListPage
 
         and:
-        rows[0]?.deleteButton.click()
+        rows.find {it.name == "Foo Bar!" }.deleteButton.click()
 
         then:
         at AuthorListPage

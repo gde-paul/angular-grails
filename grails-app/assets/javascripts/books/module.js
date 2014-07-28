@@ -14,9 +14,9 @@ angular.module('exampleApp.books', ['angularGrails', 'exampleApp.books.controlle
             controller: 'DefaultListCtrl',
             templateUrl: 'list.html',
             resolve: {
-                items: function($route, crudService) {
+                items: function($route, CrudService) {
                     var params = $route.current.params;
-                    return crudService.list(params);
+                    return CrudService.list(params);
                 }
             }
         })
@@ -24,8 +24,8 @@ angular.module('exampleApp.books', ['angularGrails', 'exampleApp.books.controlle
             controller: 'CreateEditCtrl',
             templateUrl: 'create-edit.html',
             resolve: {
-                item: function(crudService) {
-                    return crudService.create();
+                item: function(CrudService) {
+                    return CrudService.create();
                 },
                 authors: function(rootUrl, $q, $http) {
                     var deferred = $q.defer();
@@ -42,9 +42,9 @@ angular.module('exampleApp.books', ['angularGrails', 'exampleApp.books.controlle
             controller: 'CreateEditCtrl',
             templateUrl: 'create-edit.html',
             resolve: {
-                item: function($route, crudService) {
+                item: function($route, CrudService) {
                     var id = $route.current.params.id;
-                    return crudService.get(id);
+                    return CrudService.get(id);
                 },
                 authors: function(rootUrl,  $q, $http) {
                     var deferred = $q.defer();
@@ -61,9 +61,9 @@ angular.module('exampleApp.books', ['angularGrails', 'exampleApp.books.controlle
             controller: 'DefaultShowCtrl',
             templateUrl: 'show.html',
             resolve: {
-                item: function($route, crudService) {
+                item: function($route, CrudService) {
                     var id = $route.current.params.id;
-                    return crudService.get(id);
+                    return CrudService.get(id);
                 }
             }
         })

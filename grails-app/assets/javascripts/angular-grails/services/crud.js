@@ -1,8 +1,6 @@
 'use strict';
 
-var crudServices = angular.module('angularGrails.services.crud', ['angularGrails.constants']);
-
-crudServices.factory('crudService', function($resource, $q, $http, rootUrl, restUrl) {
+function CrudService($resource, $q, $http, rootUrl, restUrl) {
     var baseUrl = rootUrl + restUrl;
 
     var resource = $resource(baseUrl + '/:id', {id: '@id'} ,
@@ -58,4 +56,7 @@ crudServices.factory('crudService', function($resource, $q, $http, rootUrl, rest
             return getResourcePromise(resource.update(data), successFn, errorFn);
         }
     }
-});
+}
+
+angular.module('angularGrails.services.crud', ['angularGrails.constants'])
+    .factory('CrudService', CrudService);

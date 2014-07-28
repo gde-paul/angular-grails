@@ -13,9 +13,9 @@ angular.module('exampleApp.authors', ['angularGrails'])
                 controller: 'DefaultListCtrl',
                 templateUrl: 'list.html',
                 resolve: {
-                    items: function($route, crudService) {
+                    items: function($route, CrudService) {
                         var params = $route.current.params;
-                        return crudService.list(params);
+                        return CrudService.list(params);
                     }
                 }
             })
@@ -23,8 +23,8 @@ angular.module('exampleApp.authors', ['angularGrails'])
                 controller: 'DefaultCreateEditCtrl',
                 templateUrl: 'create-edit.html',
                 resolve: {
-                    item: function(crudService) {
-                        return crudService.create();
+                    item: function(CrudService) {
+                        return CrudService.create();
                     }
                 }
             })
@@ -32,9 +32,9 @@ angular.module('exampleApp.authors', ['angularGrails'])
                 controller: 'DefaultCreateEditCtrl',
                 templateUrl: 'create-edit.html',
                 resolve: {
-                    item: function($route, crudService) {
+                    item: function($route, CrudService) {
                         var id = $route.current.params.id;
-                        return crudService.get(id);
+                        return CrudService.get(id);
                     }
                 }
             })
@@ -42,9 +42,9 @@ angular.module('exampleApp.authors', ['angularGrails'])
                 controller: 'DefaultShowCtrl',
                 templateUrl: 'show.html',
                 resolve: {
-                    item: function($route, crudService) {
+                    item: function($route, CrudService) {
                         var id = $route.current.params.id;
-                        return crudService.get(id);
+                        return CrudService.get(id);
                     }
                 }
             })

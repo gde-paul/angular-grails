@@ -1,8 +1,6 @@
 'use strict';
 
-var flashServices = angular.module('angularGrails.services.flash', []);
-
-flashServices.factory('flash', function($rootScope) {
+function FlashService($rootScope) {
     var MESSAGE_TYPE = {
         ERROR: 'error',
         SUCCESS: 'success',
@@ -60,6 +58,7 @@ flashServices.factory('flash', function($rootScope) {
             clearMessage();
         }
     }
+}
 
-
-});
+angular.module('angularGrails.services.flash', [])
+    .factory('FlashService', FlashService);
