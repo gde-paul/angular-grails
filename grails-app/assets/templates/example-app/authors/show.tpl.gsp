@@ -1,6 +1,6 @@
 <%@ Page import="com.craigburke.angular.Author" %>
 
-<h2>{{item.title}}</h2>
+<h2>Show Author: {{item.firstName}} {{item.lastName}}</h2>
 <div flash-message ></div>
 
 <table class="table table-bordered">

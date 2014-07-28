@@ -12,6 +12,7 @@ buttonsDirectives.directive('crudButton', function(crudService, $location, resou
         scope: {
             crudButton: '@',
             resource: '=',
+            isDisabled: '=',
             afterAction: '&'
         },
         link: function($scope) {

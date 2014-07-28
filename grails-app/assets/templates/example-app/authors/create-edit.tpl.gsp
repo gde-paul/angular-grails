@@ -15,9 +15,8 @@
     </f:with>
 
     <div>
-        <button crud-button="save" resource="item"></button>
+        <button crud-button="save" resource="item" is-disabled="form.$invalid"></button>
         <button crud-button="cancel"></button>
     </div>
-
 </form>
 

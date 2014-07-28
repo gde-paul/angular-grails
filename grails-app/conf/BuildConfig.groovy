@@ -15,13 +15,17 @@ grails.project.fork = [
 
 grails.project.dependency.resolver = "maven"
 grails.project.dependency.resolution = {
+
     inherits "global"
     log "error"
     checksums true
     legacyResolve false
-    repositories {
-        inherits true
 
+    String gebVersion = '0.9.2'
+    String seleniumVersion = '2.42.2'
+    String spockVersion = '0.7'
+
+    repositories {
         grailsPlugins()
         grailsHome()
         mavenLocal()
@@ -30,7 +34,9 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-
+        test "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
+        test "org.gebish:geb-spock:${gebVersion}"
+        test "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
     }
 
     plugins {
@@ -48,5 +54,7 @@ grails.project.dependency.resolution = {
         compile ':sass-asset-pipeline:1.8.0'
         compile ":angular-template-asset-pipeline:1.2.4"
         compile ":angular-annotate-asset-pipeline:1.0.2"
+
+        test ":geb:$gebVersion"
     }
 }

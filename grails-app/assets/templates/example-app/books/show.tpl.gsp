@@ -1,6 +1,6 @@
 <%@ Page import="com.craigburke.angular.Book" %>
 
-<h2>{{item.title}}</h2>
+<h2>Show Book: {{item.title}}</h2>
 <div flash-message ></div>
 
 <table class="table table-bordered">
