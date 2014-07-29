@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-SELENIUM_VERSION="2.42.2"
+SELENIUM_VERSION="2.39.0"
 
 function start_selenium {
 	sudo start xvfb
