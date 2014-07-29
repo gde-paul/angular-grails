@@ -43,7 +43,7 @@ This project includes an AngularJS module called **angularGrails** that you can 
 
 ### Services
 
-#### crudService 
+#### CrudService
 
 This is a generalized service used to make REST calls. The constants **rootUrl** and **restUrl** must be set for these methods to work correctly. This service is esentially a wrapper for Angular's own **$resource** module but returns a promise instead of a resource object.
 
@@ -57,27 +57,27 @@ angular.module('myApp').constant('restUrl', '/api/book');
 Here's an example of how you might use each available method:
 
 ```javascript
-// crudService.list
-crudService.list({page: 1}).then(function(response) {
+// CrudService.list
+CrudService.list({page: 1}).then(function(response) {
   $scope.items = response;
 });
 
-// crudService.create
-crudService.create().then(function(response) {
+// CrudService.create
+CrudService.create().then(function(response) {
   $scope.newItem = response;
 });
 
-// crudService.get
-crudService.get(1).then(function(response) {
+// CrudService.get
+CrudService.get(1).then(function(response) {
   $scope.currentItem = response;
 });
 
-// crudService.update
+// CrudService.update
 var item = {id: 1, title: 'Foo Bar'};
-crudService.update(item);
+CrudService.update(item);
 
-// crudService.delete
-crudService.delete(1);
+// CrudService.delete
+CrudService.delete(1);
 
 ```
 Each of the above functions can also accept an optional success and error callback function:
@@ -91,18 +91,18 @@ var errorFunction = function(response) {
 console.log("Uh oh!");
 };
 
-crudService.delete(1, successFunction, errorFunction);
+CrudService.delete(1, successFunction, errorFunction);
 
 ````
-#### flash
+#### FlashService
 Used in conjunction with the **flash-message** directive below. This service allows you to easily set different messages in your app. Each time a flash message is set it overrides the previous one.
 
 ```javascript
-flash.success("Everything is fine");
-flash.warning("Something bad is about to happen");
-flash.error("Uh oh, something bad did happen");
-flash.info("Something good or bad might happen");
-flash.clear(); // Clear messages
+FlashService.success("Everything is fine");
+FlashService.warning("Something bad is about to happen");
+FlashService.error("Uh oh, something bad did happen");
+FlashService.info("Something good or bad might happen");
+FlashService.clear(); // Clear messages
 
 ```
 
@@ -111,7 +111,7 @@ flash.clear(); // Clear messages
 #### crudButton
 This directive allows you to add buttons that make use of the **crudService.** 
 
-The click actions of these buttons are automatically set to make the appropriate crudService method call. For example, clicking the delete button will call the crudService.delete method.
+The click actions of these buttons are automatically set to make the appropriate crudService method call. For example, clicking the delete button will call the CrudService.delete method.
 
 
 ```html
@@ -122,10 +122,11 @@ The click actions of these buttons are automatically set to make the appropriate
 <button crud-button="cancel" ></button>
 ```
 
-You can also include an optional **afterAction** parameter to register a callback
+You can also include an optional **afterAction** parameter to register a callback or **isDisabled** to disable a button.
 
 ```html
 <button crud-button="delete" resource="item" after-action="logDelete()"></button>
+<button crud-button="save" resource="item" is-disabled="form.$invalid"></button>
 ```
 
 The button templates are located at:
