@@ -13,17 +13,16 @@ grails.project.fork = [
         console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
 ]
 
-grails.project.dependency.resolver = "maven"
+grails.project.dependency.resolver = 'maven'
 grails.project.dependency.resolution = {
 
-    inherits "global"
-    log "error"
+    inherits 'global'
+    log 'error'
     checksums true
     legacyResolve false
 
     String gebVersion = '0.9.2'
     String seleniumVersion = '2.42.2'
-    String spockVersion = '0.7'
 
     repositories {
         grailsPlugins()
@@ -44,14 +43,13 @@ grails.project.dependency.resolution = {
 
         compile ":scaffolding:2.1.2"
         compile ':cache:1.1.7'
-        compile ":asset-pipeline:1.9.2"
+        compile ":asset-pipeline:1.9.6"
 
         compile ":fields:1.3"
 
         runtime ":hibernate4:4.3.5.4"
-        runtime ":database-migration:1.4.0"
 
-        compile ':sass-asset-pipeline:1.8.0'
+        compile ':sass-asset-pipeline:1.9.0'
         compile ":angular-template-asset-pipeline:1.2.4"
         compile ":angular-annotate-asset-pipeline:1.0.2"
 
