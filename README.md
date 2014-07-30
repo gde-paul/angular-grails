@@ -78,21 +78,19 @@ CrudService.update(item);
 
 // CrudService.delete
 CrudService.delete(1);
-
 ```
 Each of the above functions can also accept an optional success and error callback function:
 
 ```javascript
 var successFunction = function(response) {
-console.log("It worked!");
+    console.log("It worked!");
 };
 
 var errorFunction = function(response) {
-console.log("Uh oh!");
+    console.log("Uh oh!");
 };
 
 CrudService.delete(1, successFunction, errorFunction);
-
 ````
 #### FlashService
 Used in conjunction with the **flash-message** directive below. This service allows you to easily set different messages in your app. Each time a flash message is set it overrides the previous one.
@@ -102,14 +100,13 @@ FlashService.success("Everything is fine");
 FlashService.warning("Something bad is about to happen");
 FlashService.error("Uh oh, something bad did happen");
 FlashService.info("Something good or bad might happen");
-FlashService.clear(); // Clear messages
-
+FlashService.clear(); // Clear message
 ```
 
 ### Directives
 
 #### crudButton
-This directive allows you to add buttons that make use of the **crudService.** 
+This directive allows you to add buttons that make use of the **CrudService.** 
 
 The click actions of these buttons are automatically set to make the appropriate crudService method call. For example, clicking the delete button will call the CrudService.delete method.
 
@@ -133,7 +130,7 @@ The button templates are located at:
 `/grails-app/assets/templates/angular-grails/directives/buttons`
 
 #### flashMessage
-This directive is used along with the **flash** service above to display messages on the page. 
+This directive is used along with the **FlashService** above to display messages on the page. 
 ```html
 <div flash-message></div>
 ```
