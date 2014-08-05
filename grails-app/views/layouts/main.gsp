@@ -7,14 +7,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   		<asset:stylesheet src="application.css"/>
-		<asset:javascript src="application.js"/>
 
-        <g:javascript>
+        <asset:script type="text/javascript">
             angular.module('angularGrails.constants', [])
                 .constant('rootUrl', '${request.contextPath}')
                 .constant('pageSize', ${grailsApplication.config.angular.pageSize})
                 .constant('dateFormat', '${grailsApplication.config.angular.dateFormat}');
-        </g:javascript>
+        </asset:script>
 
 		<g:layoutHead/>
 	</head>
@@ -50,5 +49,7 @@
       </div>
     </div>
     </div>
-	</body>
+    <asset:deferredScripts />
+    <asset:javascript src="application.js"/>
+    </body>
 </html>
