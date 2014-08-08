@@ -51,7 +51,7 @@ grails.project.dependency.resolution = {
 
         compile ':sass-asset-pipeline:1.9.0'
         compile ":angular-template-asset-pipeline:1.2.5"
-        compile ":angular-annotate-asset-pipeline:1.0.3"
+        compile ":angular-annotate-asset-pipeline:1.0.4"
 
         test ":geb:$gebVersion"
     }
