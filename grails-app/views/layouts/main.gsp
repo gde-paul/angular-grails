@@ -15,6 +15,8 @@
                 .constant('dateFormat', '${grailsApplication.config.angular.dateFormat}');
         </asset:script>
 
+        <asset:javascript src="application.js"/>
+        <asset:deferredScripts />
 		<g:layoutHead/>
 	</head>
 	<body ng-app="${pageProperty(name: 'body.ng-app') ?: 'angularGrails'}">
@@ -49,7 +51,6 @@
       </div>
     </div>
     </div>
-    <asset:deferredScripts />
-    <asset:javascript src="application.js"/>
+
     </body>
 </html>
