@@ -1,5 +1,5 @@
 //= require_self
-//= require_tree example-app/authors
+//= require_tree /example-app/authors
 
 'use strict';
 

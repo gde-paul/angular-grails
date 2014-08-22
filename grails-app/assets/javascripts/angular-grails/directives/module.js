@@ -1,6 +1,6 @@
 //= require_self
 //= require_tree .
-//= require_tree angular-grails/directives
+//= require_tree /angular-grails/directives
 
 'use strict';
 

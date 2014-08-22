@@ -8,10 +8,10 @@ function install_java {
 	sudo apt-get -q -y install python-software-properties
 	sudo add-apt-repository -y ppa:webupd8team/java > /dev/null
 	sudo apt-get -q -y update
-	echo "oracle-java7-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
-	echo "oracle-java7-installer shared/accepted-oracle-license-v1-1 seen true" | sudo debconf-set-selections
+	echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
+	echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 seen true" | sudo debconf-set-selections
 
-	sudo apt-get -q -y install oracle-java7-installer
+	sudo apt-get -q -y install oracle-java8-installer
 }
 
 function start_selenium {
