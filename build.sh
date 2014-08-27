@@ -6,6 +6,8 @@ SELENIUM_FOLDER=${SELENIUM_VERSION%.*}
 
 function install_java {
 	sudo sudo apt-get purge openjdk*
+	unset JAVA_HOME
+	
 	sudo apt-get -q -y install python-software-properties
 	sudo add-apt-repository -y ppa:webupd8team/java > /dev/null
 	sudo apt-get -q -y update
