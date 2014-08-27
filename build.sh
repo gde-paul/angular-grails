@@ -11,7 +11,7 @@ function install_java {
 	echo "oracle-java7-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
 	echo "oracle-java7-installer shared/accepted-oracle-license-v1-1 seen true" | sudo debconf-set-selections
 
-	sudo apt-get -q -y install oracle-java7-installer
+	sudo apt-get -q -y install oracle-java7-set-default
 }
 
 function start_selenium {
