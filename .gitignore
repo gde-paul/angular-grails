@@ -12,3 +12,9 @@
 target
 out
 .sass-cache
+
+# Gradle
+.gradle
+node_modules
+build
+buildPlugins

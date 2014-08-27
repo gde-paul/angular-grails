@@ -22,5 +22,5 @@ function start_selenium {
 
 install_java
 start_selenium
-./grailsw test-app functional:
-./grailsw war angular-grails.war
+./gradlew test
+./gradlew war
