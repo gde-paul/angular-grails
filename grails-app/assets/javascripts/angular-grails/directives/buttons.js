@@ -1,5 +1,5 @@
 //= require_self
-//= require_tree angular-grails/directives/buttons
+//= require_tree /template/angular-grails/directives/buttons
 
 'use strict';
 

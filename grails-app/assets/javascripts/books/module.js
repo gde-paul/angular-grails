@@ -1,6 +1,6 @@
 //= require_self
 //= require controllers
-//= require_tree /example-app/books
+//= require_tree /templates/example-app/books
 
 'use strict';
 

@@ -1,5 +1,4 @@
 //= require_self
-//= require_tree angular-grails/directives/sort
 
 'use strict';
 

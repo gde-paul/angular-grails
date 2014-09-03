@@ -1,5 +1,5 @@
 //= require_self
-//= require_tree angular-grails/directives/flash
+//= require_tree /templates/angular-grails/directives/flash
 
 'use strict';
 
