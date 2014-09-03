@@ -2,6 +2,22 @@
 
 'use strict';
 
+/* @ngInject */
+function sortHeaderController($scope) {
+    $scope.sort = {sort: undefined, order: undefined};
+
+    this.setSort = function(sort) {
+        $scope.sort = sort;
+    };
+
+    this.currentSort = function() {
+        return $scope.sort;
+    };
+
+    return this;
+}
+
+
 function sortHeader() {
     return {
         restrict: 'EA',
@@ -18,19 +34,7 @@ function sortHeader() {
                 }
             });
         },
-        controller: function($scope) {
-            $scope.sort = {sort: undefined, order: undefined};
-
-            this.setSort = function(sort) {
-                $scope.sort = sort;
-            };
-
-            this.currentSort = function() {
-                return $scope.sort;
-            };
-
-            return this;
-        }
+        controller: sortHeaderController
     }
 }
 
