@@ -1,11 +1,20 @@
 module.exports = function(config) {
+
+  var ASSET_PATH = 'grails-app/assets';
+  var TEST_PATH = 'test/js'
+
   config.set({
-    basePath: '',
+    basePath: '../../',
     frameworks: ['jasmine'],
 
     files: [
-      '**/*-spec.js'
+      ASSET_PATH + '/vendor/angular/angular.js',
+      ASSET_PATH + '/vendor/**/*.js',
+      ASSET_PATH + '/javascripts/**/*.js',
+      TEST_PATH + '/angular-mocks.js',
+      TEST_PATH + '/**/*-spec.js'
     ],
+
     exclude: [],
     preprocessors: {},
     reporters: ['progress'],
