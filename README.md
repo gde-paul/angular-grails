@@ -9,20 +9,20 @@ This project also makes use of [Twitter Bootstrap](http://getbootstrap.com/), [A
 ## Getting started
 This project makes use of the [Grails Gradle plugin](https://github.com/grails/grails-gradle-plugin). You can start the application like this:
 ```bash
-.\gradlew run
+./gradlew run
 ```
 You can run all the tests (Groovy and Javascript) like this:
 ```bash
-.\gradlew test
+./gradlew test
 ```
 
 If you want to run just the Jasmine (JavaScript) tests use this command
 ```bash
-.\gradlew jasmineRun
+./gradlew jasmineRun
 ```
 The following will run the Jasmine tests in watch mode (so that tests are rerun when your source changes):
 ```bash
-.\gradlew jasmineWatch
+./gradlew jasmineWatch
 ```
 
 ## The Grails AngularController
