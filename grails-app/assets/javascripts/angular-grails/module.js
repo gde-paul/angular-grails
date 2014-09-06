@@ -14,5 +14,6 @@ angular.module('angularGrails', [
     'ui.bootstrap',
     'angularGrails.directives',
     'angularGrails.services',
-    'angularGrails.controllers'
+    'angularGrails.controllers',
+    'angularGrails.constants'
 ]);
