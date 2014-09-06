@@ -3,7 +3,7 @@
 //= require directives/module
 //= require services/module
 //= require ui-bootstrap.min
-//= require controllers
+//= require controllers/module
 
 'use strict';
 

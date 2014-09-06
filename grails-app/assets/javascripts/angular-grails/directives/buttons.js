@@ -3,17 +3,19 @@
 
 'use strict';
 
-function crudButton($location, CrudService, FlashService, resourceName) {
+function crudButton($location, $injector, defaultResourceName, FlashService) {
     return {
         restrict: 'EA',
         replace: true,
         scope: {
             crudButton: '@',
-            resource: '=',
+            item: '=',
             isDisabled: '=',
             afterAction: '&'
         },
         link: function ($scope) {
+
+            var defaultResource = $injector.get(defaultResourceName);
 
             var createFn = function () {
                 $location.path("/create");
@@ -23,7 +25,7 @@ function crudButton($location, CrudService, FlashService, resourceName) {
             };
 
             var editFn = function () {
-                $location.path("/edit/" + $scope.resource.id);
+                $location.path("/edit/" + $scope.item.id);
                 if ($scope.afterAction) {
                     $scope.afterAction();
                 }
@@ -39,28 +41,28 @@ function crudButton($location, CrudService, FlashService, resourceName) {
                     FlashService.error(messages);
                 };
 
-                if ($scope.resource.id) {
-                    CrudService.update($scope.resource,
+                if ($scope.item.id) {
+                    defaultResource.update($scope.item,
                         function (response) {
                             $location.path('/show/' + response.id);
                             if ($scope.afterAction) {
                                 $scope.afterAction();
                             }
                             $scope.$on('$destroy', function () {
-                                FlashService.success(resourceName + " was updated");
+                                FlashService.success(defaultResource.getName() + " was updated");
                             });
                         },
                         errorFunction)
                 }
                 else {
-                    CrudService.save($scope.resource,
+                    defaultResource.save($scope.item,
                         function (response) {
                             $location.path('/show/' + response.id);
                             if ($scope.afterAction) {
                                 $scope.afterAction();
                             }
                             $scope.$on('$destroy', function () {
-                                FlashService.success(resourceName + " was saved");
+                                FlashService.success(defaultResource.getName() + " was saved");
                             });
                         },
                         errorFunction)
@@ -69,17 +71,17 @@ function crudButton($location, CrudService, FlashService, resourceName) {
 
             var deleteFn = function () {
                 var successFn = function () {
-                    FlashService.success(resourceName + ' was successfully deleted');
+                    FlashService.success(defaultResource.getName() + ' was successfully deleted');
                     if ($scope.afterAction) {
                         $scope.afterAction();
                     }
                 };
 
                 var errorFn = function () {
-                    FlashService.error("Couldn't delete " + resourceName);
+                    FlashService.error("Couldn't delete " + defaultResource.getName());
                 };
 
-                CrudService.delete($scope.resource.id, successFn, errorFn);
+                defaultResource.delete($scope.item.id, successFn, errorFn);
             };
 
             var cancelFn = function () {

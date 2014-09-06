@@ -1,11 +1,11 @@
-describe('Angular Grails Controllers', function() {
+describe('angularGrails Controllers: ', function() {
 
-    var item = {'foo': 'bar', 'count': 100}
+    var item = {'foo': 'bar', 'count': 100};
 
     beforeEach(module('angularGrails.controllers'));
 
     describe('DefaultShowCtrl', function() {
-        var DefaultShowCtrl, scope;
+        var ctrl, scope;
 
         beforeEach(module(function($provide) {
             $provide.value('item', item);
@@ -14,17 +14,17 @@ describe('Angular Grails Controllers', function() {
         beforeEach(inject(
             function ($controller, $rootScope) {
                 scope = $rootScope.$new();
-                DefaultShowCtrl = $controller('DefaultShowCtrl', { $scope: scope });
+                ctrl = $controller('DefaultShowCtrl', { $scope: scope });
             }
         ));
 
         it('should have the item on the scope', function() {
-            expect(scope.item).toEqual(item);
+            expect(ctrl.item).toEqual(item);
         });
     });
 
     describe('DefaultCreateEditCtrl', function() {
-        var DefaultCreateEditCtrl, scope;
+        var ctrl, scope;
 
         beforeEach(module(function($provide) {
             $provide.value('item', item);
@@ -33,17 +33,17 @@ describe('Angular Grails Controllers', function() {
         beforeEach(inject(
             function ($controller, $rootScope) {
                 scope = $rootScope.$new();
-                DefaultCreateEditCtrl = $controller('DefaultCreateEditCtrl', { $scope: scope });
+                ctrl = $controller('DefaultCreateEditCtrl', { $scope: scope });
             }
         ));
 
         it('should have the item on the scope', function() {
-            expect(scope.item).toEqual(item);
+            expect(ctrl.item).toEqual(item);
         });
     });
 
     describe('DefaultListCtrl', function() {
-        var DefaultListCtrl, $scope, deferred;
+        var ctrl, $scope, deferred;
 
         var items = [
             {id: 1, name: 'Item1'},
@@ -53,7 +53,7 @@ describe('Angular Grails Controllers', function() {
         var items2 = [
             {id: 3, name: 'Item3'},
             {id: 4, name: 'Item4'}
-        ]
+        ];
 
         var pageSize = 25;
 
@@ -64,8 +64,9 @@ describe('Angular Grails Controllers', function() {
                     deferred.resolve(items2);
                     return deferred.promise;
                 }
-            }
+            };
 
+            $provide.value('defaultResourceName', 'CrudService');
             $provide.value('CrudService', mockCrudService);
             $provide.value('items', items);
             $provide.value('pageSize', pageSize);
@@ -75,23 +76,23 @@ describe('Angular Grails Controllers', function() {
             function ($controller, $rootScope, $q) {
                 deferred = $q.defer();
                 $scope = $rootScope.$new();
-                DefaultListCtrl = $controller('DefaultListCtrl', { $scope: $scope });
+                ctrl = $controller('DefaultListCtrl', { $scope: $scope });
             }
         ));
 
         it('should have the items and default values set on the scope', function() {
-            expect($scope.pageSize).toEqual(pageSize);
-            expect($scope.items).toEqual(items);
-            expect($scope.page).toEqual(1);
+            expect(ctrl.pageSize).toEqual(pageSize);
+            expect(ctrl.items).toEqual(items);
+            expect(ctrl.page).toEqual(1);
         });
 
         it('reload should reset page', function() {
-            $scope.page = 2;
-            $scope.reload();
+            ctrl.page = 2;
+            ctrl.reload();
             $scope.$digest();
 
-            expect($scope.page).toEqual(1);
-            expect($scope.items).toEqual(items2);
+            expect(ctrl.page).toEqual(1);
+            expect(ctrl.items).toEqual(items2);
         });
 
     });

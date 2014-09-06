@@ -1,69 +1,64 @@
 //= require_self
 //= require controllers
+//= require services
+//= require /authors/services
 //= require_tree /templates/example-app/books
 
 'use strict';
 
-angular.module('exampleApp.books', ['angularGrails', 'exampleApp.books.controllers'])
-    .constant('restUrl', '/api/book')
-    .constant('resourceName', 'Book')
+angular.module('exampleApp.books', [
+    'angularGrails',
+    'exampleApp.authors.services',
+    'exampleApp.books.controllers',
+    'exampleApp.books.services'
+])
+    .value('defaultResourceName', 'BookResource')
     .config(function($routeProvider) {
-
     $routeProvider
         .when('/', {
-            controller: 'DefaultListCtrl',
+            controller: 'DefaultListCtrl as ctrl',
             templateUrl: 'list.html',
             resolve: {
-                items: function($route, CrudService) {
+                items: function($route, BookResource) {
                     var params = $route.current.params;
-                    return CrudService.list(params);
+                    return BookResource.list(params);
                 }
             }
         })
         .when('/create', {
-            controller: 'CreateEditCtrl',
+            controller: 'CreateEditCtrl as ctrl',
             templateUrl: 'create-edit.html',
             resolve: {
-                item: function(CrudService) {
-                    return CrudService.create();
+                item: function(BookResource) {
+                    return BookResource.create();
                 },
-                authors: function(rootUrl, $q, $http) {
-                    var deferred = $q.defer();
-
-                    $http.get(rootUrl + '/api/author').success(function(data) {
-                        deferred.resolve(data);
+                authors: function(AuthorResource) {
+                    return AuthorResource.list().then(function(response) {
+                        return response.items;
                     });
-
-                    return deferred.promise;
                 }
             }
         })
         .when('/edit/:id', {
-            controller: 'CreateEditCtrl',
+            controller: 'CreateEditCtrl as ctrl',
             templateUrl: 'create-edit.html',
             resolve: {
-                item: function($route, CrudService) {
+                item: function($route, BookResource) {
                     var id = $route.current.params.id;
-                    return CrudService.get(id);
+                    return BookResource.get(id);
                 },
-                authors: function(rootUrl,  $q, $http) {
-                    var deferred = $q.defer();
-
-                    $http.get(rootUrl + '/api/author').success(function(data) {
-                        deferred.resolve(data);
-                    });
-
-                    return deferred.promise;
+                authors: function(AuthorResource) {
+                    return AuthorResource.list();
                 }
             }
         })
         .when('/show/:id', {
-            controller: 'DefaultShowCtrl',
+            controller: 'DefaultShowCtrl as ctrl',
             templateUrl: 'show.html',
             resolve: {
-                item: function($route, CrudService) {
+                item: function($route, BookResource) {
                     var id = $route.current.params.id;
-                    return CrudService.get(id);
+                    return BookResource.get(id);
                 }
             }
         })

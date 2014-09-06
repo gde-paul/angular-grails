@@ -1,50 +1,49 @@
 //= require_self
+//= require services
 //= require_tree /templates/example-app/authors
 
 'use strict';
-
-angular.module('exampleApp.authors', ['angularGrails'])
-    .constant('restUrl', '/api/author')
-    .constant('resourceName', 'Author')
+angular.module('exampleApp.authors', ['angularGrails', 'exampleApp.authors.services'])
+    .value('defaultResourceName', 'AuthorResource')
     .config(function($routeProvider) {
 
         $routeProvider
             .when('/', {
-                controller: 'DefaultListCtrl',
+                controller: 'DefaultListCtrl as ctrl',
                 templateUrl: 'list.html',
                 resolve: {
-                    items: function($route, CrudService) {
+                    items: function($route, AuthorResource) {
                         var params = $route.current.params;
-                        return CrudService.list(params);
+                        return AuthorResource.list(params);
                     }
                 }
             })
             .when('/create', {
-                controller: 'DefaultCreateEditCtrl',
+                controller: 'DefaultCreateEditCtrl as ctrl',
                 templateUrl: 'create-edit.html',
                 resolve: {
-                    item: function(CrudService) {
-                        return CrudService.create();
+                    item: function(AuthorResource) {
+                        return AuthorResource.create();
                     }
                 }
             })
             .when('/edit/:id', {
-                controller: 'DefaultCreateEditCtrl',
+                controller: 'DefaultCreateEditCtrl as ctrl',
                 templateUrl: 'create-edit.html',
                 resolve: {
-                    item: function($route, CrudService) {
+                    item: function($route, AuthorResource) {
                         var id = $route.current.params.id;
-                        return CrudService.get(id);
+                        return AuthorResource.get(id);
                     }
                 }
             })
             .when('/show/:id', {
-                controller: 'DefaultShowCtrl',
+                controller: 'DefaultShowCtrl as ctrl',
                 templateUrl: 'show.html',
                 resolve: {
-                    item: function($route, CrudService) {
+                    item: function($route, AuthorResource) {
                         var id = $route.current.params.id;
-                        return CrudService.get(id);
+                        return AuthorResource.get(id);
                     }
                 }
             })

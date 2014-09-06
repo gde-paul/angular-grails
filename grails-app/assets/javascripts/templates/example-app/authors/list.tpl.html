@@ -5,21 +5,21 @@
 
 <table class="table table-striped table-bordered">
 
-    <thead sort-header ng-model="sort" on-sort="reload()">
+    <thead sort-header ng-model="ctrl.sort" on-sort="ctrl.reload()">
         <th sortable-column title="Id" property="id"></th>
         <th sortable-column title="Name" property="lastName"></th>
         <th>&nbsp;</th>
     </thead>
     <tbody>
-        <tr ng-repeat="item in items.items">
+        <tr ng-repeat="item in ctrl.items.items">
             <td><a href="#/show/{{item.id}}">{{item.id}}</a></td>
             <td>{{item.firstName}} {{item.lastName}}</td>
             <td>
-                <button crud-button="edit" resource="item" ></button>
-                <button crud-button="delete" resource="item" after-action="reload()"></button>
+                <button crud-button="edit" item="item" ></button>
+                <button crud-button="delete" item="item" after-action="ctrl.reload()"></button>
             </td>
         </tr>
     </tbody>
 </table>
 
-<div pagination total-items="items.count" items-per-page="{{pageSize}}" max-size="5" ng-model="page" ng-change="load()"></div>
+<div pagination total-items="ctrl.items.count" items-per-page="{{ctrl.pageSize}}" max-size="5" ng-model="ctrl.page" ng-change="ctrl.load()"></div>

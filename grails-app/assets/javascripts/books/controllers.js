@@ -1,6 +1,8 @@
-function CreateEditCtrl($scope, item, authors) {
-    $scope.item = item;
-    $scope.authors = authors;
+function CreateEditCtrl(item, authors) {
+    var self = this;
+
+    self.item = item;
+    self.authors = authors;
 }
 
 angular.module('exampleApp.books.controllers', ['angularGrails'])

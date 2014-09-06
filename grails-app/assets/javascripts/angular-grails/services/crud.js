@@ -1,30 +1,31 @@
 'use strict';
 
-function CrudService($resource, $q, $http, rootUrl, restUrl) {
-    var CrudService = {};
+function CrudResourceFactory(rootUrl, $resource, $q, $http) {
 
-    var baseUrl = rootUrl + restUrl;
+    return function(restUrl, resourceName) {
+        var crudResource = {};
 
-    var resource = $resource(baseUrl + '/:id', {id: '@id'} ,
-        { 'update': { method: 'PUT'} }
-    );
+        var baseUrl = rootUrl + restUrl;
+        var resource = $resource(baseUrl + '/:id', {id: '@id'} ,
+            { 'update': { method: 'PUT'} }
+        );
 
-    var getResourcePromise = function(resourceMethod, successFn, errorFn) {
-        return chainPromise(resourceMethod.$promise, successFn, errorFn);
-    };
+        var getResourcePromise = function(resourceMethod, successFn, errorFn) {
+            return chainPromise(resourceMethod.$promise, successFn, errorFn);
+        };
 
-    var chainPromise = function(promise, successFn, errorFn) {
-        if (successFn && errorFn) {
-            promise = promise.then(successFn, errorFn);
-        }
-        else if (successFn) {
-            promise = promise.then(successFn);
-        }
+        var chainPromise = function(promise, successFn, errorFn) {
+            if (successFn && errorFn) {
+                promise = promise.then(successFn, errorFn);
+            }
+            else if (successFn) {
+                promise = promise.then(successFn);
+            }
 
-        return promise;
-    };
+            return promise;
+        };
 
-    CrudService.list = function(params, successFn, errorFn) {
+        crudResource.list = function(params, successFn, errorFn) {
             var deferred = $q.defer();
 
             resource.query(params, function(items, headers) {
@@ -34,14 +35,18 @@ function CrudService($resource, $q, $http, rootUrl, restUrl) {
             });
 
             return chainPromise(deferred.promise, successFn, errorFn);
-    };
+        };
 
 
-    CrudService.get = function(id, successFn, errorFn) {
-        return getResourcePromise(resource.get({id: id}, successFn, errorFn));
-    };
+        crudResource.getName = function() {
+            return resourceName;
+        };
 
-    CrudService.create = function(successFn, errorFn) {
+        crudResource.get = function(id, successFn, errorFn) {
+            return getResourcePromise(resource.get({id: id}, successFn, errorFn));
+        };
+
+        crudResource.create = function(successFn, errorFn) {
             var deferred = $q.defer();
 
             $http.get(baseUrl + "/create").success(function(data) {
@@ -49,22 +54,23 @@ function CrudService($resource, $q, $http, rootUrl, restUrl) {
             });
 
             return chainPromise(deferred.promise, successFn, errorFn);
-    };
+        };
 
-    CrudService.delete = function(id, successFn, errorFn) {
+        crudResource.delete = function(id, successFn, errorFn) {
             return getResourcePromise(resource.delete({id: id}), successFn, errorFn);
-    };
+        };
 
-    CrudService.save = function(data, successFn, errorFn) {
+        crudResource.save = function(data, successFn, errorFn) {
             return getResourcePromise(resource.save(data), successFn, errorFn);
-    };
+        };
 
-    CrudService.update = function(data, successFn, errorFn) {
+        crudResource.update = function(data, successFn, errorFn) {
             return getResourcePromise(resource.update(data), successFn, errorFn);
-    };
+        };
 
-    return CrudService;
+        return crudResource;
+    };
 }
 
 angular.module('angularGrails.services.crud', ['angularGrails.constants'])
-    .factory('CrudService', CrudService);
+    .factory('CrudResourceFactory', CrudResourceFactory);
