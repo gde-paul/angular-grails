@@ -88,11 +88,11 @@ AuthorResource.list({page: 1}).then(function(items) {
 });
 
 AuthorResource.create().then(function(item) {
-  $scope.newItem = item;
+  this.newItem = item;
 });
 
 AuthorResource.get(1).then(function(item) {
-  $scope.currentItem = item;
+  this.currentItem = item;
 });
 
 var item = {id: 1, title: 'Foo Bar'};
