@@ -30,13 +30,14 @@ function CrudResourceFactory(rootUrl, $resource, $q, $http) {
 
             resource.query(params, function(items, headers) {
                 var count = headers('Content-Range').split('/')[1];
-                var data = {items: items, count: count};
-                deferred.resolve(data);
+                items.getTotalCount = function() {
+                    return count;
+                };
+                deferred.resolve(items);
             });
 
             return chainPromise(deferred.promise, successFn, errorFn);
         };
-
 
         crudResource.getName = function() {
             return resourceName;
@@ -68,9 +69,10 @@ function CrudResourceFactory(rootUrl, $resource, $q, $http) {
             return getResourcePromise(resource.update(data), successFn, errorFn);
         };
 
+
         return crudResource;
     };
 }
 
-angular.module('angularGrails.services.crud', ['angularGrails.constants'])
+angular.module('angularGrails.services.crud', ['ngResource'])
     .factory('CrudResourceFactory', CrudResourceFactory);

@@ -12,7 +12,7 @@
         <th>&nbsp;</th>
     </thead>
     <tbody>
-        <tr ng-repeat="item in ctrl.items.items">
+        <tr ng-repeat="item in ctrl.items">
             <td><a href="#/show/{{item.id}}">{{item.id}}</a></td>
             <td>{{item.author.firstName}} {{item.author.lastName}}</td>
             <td>{{item.title}}</td>
@@ -24,4 +24,4 @@
     </tbody>
 </table>
 
-<div pagination total-items="ctrl.items.count" ng-model="ctrl.page" ng-change="ctrl.load()"></div>
+<div pagination total-items="ctrl.items.getTotalCount()" ng-model="ctrl.page" ng-change="ctrl.load()"></div>

@@ -62,41 +62,43 @@ This project includes an AngularJS module called **angularGrails** that you can 
 
 ### Services
 
-#### CrudService
+#### CrudResourceFactory
 
-This is a generalized service used to make REST calls. The constants **rootUrl** and **restUrl** must be set for these methods to work correctly. This service is esentially a wrapper for Angular's own **$resource** module but returns a promise instead of a resource object.
+This is a factory that you can use to create CrudResource object to help you make REST calls. 
+This is essentially a wrapper for Angular's own **$resource** module but the methods from a CrudResource object return a promise from all its methods and supports paging.
 
-**Config:**
+Here's how you would create a CrudResource object
 ```javascript
-// Modules should be previously defined
-angular.module('angularGrails.constants').constant('rootUrl', '/');
-angular.module('myApp').constant('restUrl', '/api/book');
+function AuthorResource(CrudResourceFactory) {
+    // set the rest url and resource name here
+    return CrudResourceFactory('/api/author', 'Author');
+}
+
+angular.module('exampleApp.authors.services', ['angularGrails'])
+    .factory('AuthorResource', AuthorResource);
 ```
 
-Here's an example of how you might use each available method:
+Once you have a CrudResource object you can use it like this:
 
 ```javascript
-// CrudService.list
-CrudService.list({page: 1}).then(function(response) {
-  $scope.items = response;
+AuthorResource.list({page: 1}).then(function(items) {
+  this.items = items;
+  // items also has a getTotalCount function that provides the total item count for paging
+  this.totalCount = items.getTotalCount();
 });
 
-// CrudService.create
-CrudService.create().then(function(response) {
-  $scope.newItem = response;
+AuthorResource.create().then(function(item) {
+  $scope.newItem = item;
 });
 
-// CrudService.get
-CrudService.get(1).then(function(response) {
-  $scope.currentItem = response;
+AuthorResource.get(1).then(function(item) {
+  $scope.currentItem = item;
 });
 
-// CrudService.update
 var item = {id: 1, title: 'Foo Bar'};
-CrudService.update(item);
+AuthorResource.update(item);
 
-// CrudService.delete
-CrudService.delete(1);
+AuthorResource.delete(1);
 ```
 Each of the above functions can also accept an optional success and error callback function:
 
@@ -109,7 +111,7 @@ var errorFunction = function(response) {
     console.log("Uh oh!");
 };
 
-CrudService.delete(1, successFunction, errorFunction);
+AuthorResource.delete(1, successFunction, errorFunction);
 ````
 #### FlashService
 Used in conjunction with the **flash-message** directive below. This service allows you to easily set different messages in your app. Each time a flash message is set it overrides the previous one.
@@ -125,15 +127,17 @@ FlashService.clear(); // Clear message
 ### Directives
 
 #### crudButton
-This directive allows you to add buttons that make use of the **CrudService.** 
 
-The click actions of these buttons are automatically set to make the appropriate crudService method call. For example, clicking the delete button will call the CrudService.delete method.
+```javascript
+
+```
+The click actions of these buttons are automatically set to make the appropriate method call from the default CrudResource. For example, clicking the delete button will call the DefaultResource.delete method.
 
 
 ```html
-<button crud-button="delete" resource="item" ></button>
-<button crud-button="edit" resource="item" ></button>
-<button crud-button="save" resource="item" ></button>
+<button crud-button="delete" item="ctrl.item" ></button>
+<button crud-button="edit" item="ctrl.item" ></button>
+<button crud-button="save" item="ctrl.item" ></button>
 <button crud-button="create" ></button>
 <button crud-button="cancel" ></button>
 ```
@@ -141,8 +145,8 @@ The click actions of these buttons are automatically set to make the appropriate
 You can also include an optional **afterAction** parameter to register a callback or **isDisabled** to disable a button.
 
 ```html
-<button crud-button="delete" resource="item" after-action="logDelete()"></button>
-<button crud-button="save" resource="item" is-disabled="form.$invalid"></button>
+<button crud-button="delete" item="ctrl.item" after-action="ctrl.logDelete()"></button>
+<button crud-button="save" item="ctrl.item" is-disabled="form.$invalid"></button>
 ```
 
 The button templates are located at:
@@ -161,7 +165,7 @@ The flash message template is located at:
 This directive allows you to keep track of the current sort state of a table, and has an onSort callback to allow you to reload your data if need be.
 
 ```html
-<thead sort-header ng-model="sort" on-sort="reloadData()">
+<thead sort-header ng-model="ctrl.sort" on-sort="ctrl.reloadData()">
     <th sortable-column title="Id" property="id"></th>
     <th sortable-column title="Name" property="name"></th>
 </thead>

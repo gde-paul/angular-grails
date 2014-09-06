@@ -33,9 +33,7 @@ angular.module('exampleApp.books', [
                     return BookResource.create();
                 },
                 authors: function(AuthorResource) {
-                    return AuthorResource.list().then(function(response) {
-                        return response.items;
-                    });
+                    return AuthorResource.list();
                 }
             }
         })
