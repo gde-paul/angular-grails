@@ -21,41 +21,32 @@ function FlashService($rootScope) {
         broadcastChange();
     }
 
-    var setMessage = function(message, title, type) {
-        _message = {message: message, title: title, type: type};
+    var setMessage = function(message, type, title) {
+        _message = {message: message, type: type, title: title};
         broadcastChange();
-    };
-
-    var getDefault = function(value, defaultValue) {
-        return (typeof value === 'undefined') ? defaultValue : value;
     };
 
     FlashService.TYPES = MESSAGE_TYPE;
 
     FlashService.error = function(message, title) {
-        title = getDefault(title, "Error");
-        setMessage(message, title, MESSAGE_TYPE.ERROR);
+        setMessage(message, MESSAGE_TYPE.ERROR, title);
     };
 
     FlashService.success = function(message, title) {
-        title = getDefault(title, "Success");
-        setMessage(message, title, MESSAGE_TYPE.SUCCESS);
+        setMessage(message, MESSAGE_TYPE.SUCCESS, title);
     };
 
     FlashService.info = function(message, title) {
-        title = getDefault(title, "Info");
-        setMessage(message, title, MESSAGE_TYPE.INFO);
+        setMessage(message, MESSAGE_TYPE.INFO, title);
     };
 
     FlashService.warn = function(message, title) {
-        title = getDefault(title, "Warning");
-        setMessage(message, title, MESSAGE_TYPE.WARN);
+        setMessage(message, MESSAGE_TYPE.WARN, title);
     };
 
-    FlashService.set = function(message, title, type) {
-        title = getDefault(title, "Info");
-        type = getDefault(type, MESSAGE_TYPE.INFO);
-        setMessage(message, title, type);
+    FlashService.set = function(message, type, title) {
+        type = type ? type : MESSAGE_TYPE.INFO;
+        setMessage(message, type, title);
     };
 
     FlashService.get = function() {
