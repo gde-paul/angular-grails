@@ -4,8 +4,8 @@ function CrudResourceFactory(rootUrl, $resource, $q, $http) {
 
     return function(restUrl, resourceName) {
         var crudResource = {};
+        var baseUrl = (rootUrl + restUrl).replace('//', '/');
 
-        var baseUrl = rootUrl + restUrl;
         var resource = $resource(baseUrl + '/:id', {id: '@id'} ,
             { 'update': { method: 'PUT'} }
         );
@@ -29,9 +29,11 @@ function CrudResourceFactory(rootUrl, $resource, $q, $http) {
             var deferred = $q.defer();
 
             resource.query(params, function(items, headers) {
-                var count = headers('Content-Range').split('/')[1];
+                var totalCount = headers('Content-Range').split('/')[1];
+                totalCount = parseInt(totalCount);
+
                 items.getTotalCount = function() {
-                    return count;
+                    return totalCount;
                 };
                 deferred.resolve(items);
             });

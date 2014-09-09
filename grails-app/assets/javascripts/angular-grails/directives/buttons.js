@@ -3,7 +3,7 @@
 
 'use strict';
 
-function crudButton($location, $injector, defaultResourceName, FlashService) {
+function crudButton($location, $injector, defaultCrudResource, FlashService) {
     return {
         restrict: 'EA',
         replace: true,
@@ -15,7 +15,7 @@ function crudButton($location, $injector, defaultResourceName, FlashService) {
         },
         link: function ($scope) {
 
-            var defaultResource = $injector.get(defaultResourceName);
+            var defaultResource = $injector.get(defaultCrudResource);
 
             var createFn = function () {
                 $location.path("/create");

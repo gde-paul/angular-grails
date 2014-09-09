@@ -1,6 +1,6 @@
-function DefaultListCtrl($injector, defaultResourceName, items, pageSize) {
+function DefaultListCtrl($injector, defaultCrudResource, items, pageSize) {
     var self = this;
-    var defaultResource = $injector.get(defaultResourceName);
+    var defaultResource = $injector.get(defaultCrudResource);
 
     self.items = items;
     self.pageSize = pageSize;

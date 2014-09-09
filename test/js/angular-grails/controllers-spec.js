@@ -66,7 +66,7 @@ describe('angularGrails Controllers: ', function() {
                 }
             };
 
-            $provide.value('defaultResourceName', 'CrudService');
+            $provide.value('defaultCrudResource', 'CrudService');
             $provide.value('CrudService', mockCrudService);
             $provide.value('items', items);
             $provide.value('pageSize', pageSize);

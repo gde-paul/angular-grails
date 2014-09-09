@@ -12,8 +12,8 @@ angular.module('exampleApp.books', [
     'exampleApp.books.controllers',
     'exampleApp.books.services'
 ])
-    .value('defaultResourceName', 'BookResource')
-    .config(function($routeProvider) {
+.value('defaultCrudResource', 'BookResource')
+.config(function($routeProvider) {
     $routeProvider
         .when('/', {
             controller: 'DefaultListCtrl as ctrl',

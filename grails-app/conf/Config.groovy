@@ -56,6 +56,10 @@ environments {
     development {
         grails.logging.jul.usebridge = true
     }
+    test {
+        grails.assets.minifyJs = true
+    }
+
     production {
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"

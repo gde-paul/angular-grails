@@ -1,8 +1,5 @@
-//= require_self
-
 'use strict';
 
-/* @ngInject */
 function sortHeaderController($scope) {
     $scope.sort = {sort: undefined, order: undefined};
 
