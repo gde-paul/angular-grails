@@ -1,15 +1,14 @@
+//= require_self
+//= require_tree /templates/angular-grails/directives/fields
+
 'use strict';
 
 function dateField() {
     return {
-        scope: {
-            ngModel: '='
-        },
-        replace: true,
+        scope: {},
         link: function($scope) {
-            $scope.open = function(event) {
-                event.preventDefault();
-                event.stopPropagation();
+
+            $scope.open = function() {
                 $scope.opened = true;
             };
 

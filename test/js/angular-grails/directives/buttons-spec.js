@@ -3,7 +3,7 @@ describe('angularGrails crudButton: ', function() {
     var _message = null;
     var $rootScope, $compile, $location, $httpBackend, mockFlashService, DefaultResource;
     var item = {id: 1, name: 'Foo'};
-    var afterFn = jasmine.createSpy();
+    var afterFn = jasmine.createSpy('afterFn');
 
     beforeEach(module('angularGrails.directives.buttons'));
     beforeEach(module('angularGrails.services.crud'));
@@ -32,6 +32,7 @@ describe('angularGrails crudButton: ', function() {
         $httpBackend = _$httpBackend_;
         $location = _$location_;
         DefaultResource = CrudResourceFactory('/api/foo', 'Foo');
+        afterFn.calls.reset();
     }));
 
 
@@ -43,7 +44,7 @@ describe('angularGrails crudButton: ', function() {
 
             var scope = $rootScope.$new();
             scope.afterAction = afterFn;
-            var element = $compile("<a crud-button='create'></div>")(scope);
+            var element = $compile("<a crud-button='create' after-action='afterAction()'></div>")(scope);
             scope.$digest();
             $httpBackend.flush();
 
@@ -52,6 +53,7 @@ describe('angularGrails crudButton: ', function() {
 
         it('should be redirected to /create on click', function() {
             directiveScope.onClick();
+            expect(afterFn.calls.count()).toBe(1);
             expect($location.path()).toBe('/create');
         });
     });
@@ -64,7 +66,8 @@ describe('angularGrails crudButton: ', function() {
 
             var scope = $rootScope.$new();
             scope.item = item;
-            var element = $compile("<a crud-button='edit' item='item'></div>")(scope);
+            scope.afterAction = afterFn;
+            var element = $compile("<a crud-button='edit' item='item' after-action='afterAction()'></div>")(scope);
             scope.$digest();
             $httpBackend.flush();
 
@@ -73,6 +76,7 @@ describe('angularGrails crudButton: ', function() {
 
         it('should be redirected to /edit on click', function() {
             directiveScope.onClick();
+            expect(afterFn.calls.count()).toBe(1);
             expect($location.path()).toBe('/edit/1');
         });
     });
@@ -85,7 +89,8 @@ describe('angularGrails crudButton: ', function() {
             $httpBackend.expectGET('cancel-button.html').respond("<button>Cancel</button>");
 
             var scope = $rootScope.$new();
-            var element = $compile("<a crud-button='cancel'></div>")(scope);
+            scope.afterAction = afterFn;
+            var element = $compile("<a crud-button='cancel' after-action='afterAction()'></div>")(scope);
             scope.$digest();
             $httpBackend.flush();
 
@@ -95,6 +100,7 @@ describe('angularGrails crudButton: ', function() {
         it('should be redirected to / on click', function() {
             $location.path('/foo');
             directiveScope.onClick();
+            expect(afterFn.calls.count()).toBe(1);
             expect($location.path()).toBe('/');
         });
     });

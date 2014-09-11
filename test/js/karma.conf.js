@@ -10,7 +10,6 @@ module.exports = function(config) {
     files: [
       ASSET_PATH + '/vendor/angular/angular.js',
       ASSET_PATH + '/vendor/**/*.js',
-      ASSET_PATH + '/javascripts/**/controllers.js',
       ASSET_PATH + '/javascripts/**/*.js',
       TEST_PATH + '/angular-mocks.js',
       TEST_PATH + '/**/*-spec.js'

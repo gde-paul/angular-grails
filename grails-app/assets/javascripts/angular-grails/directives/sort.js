@@ -1,19 +1,17 @@
 'use strict';
 
-function sortHeaderController($scope) {
+/* @ngInject */
+function SortHeaderController($scope) {
     $scope.sort = {sort: undefined, order: undefined};
 
     this.setSort = function(sort) {
         $scope.sort = sort;
     };
 
-    this.currentSort = function() {
+    this.getSort = function() {
         return $scope.sort;
     };
-
-    return this;
 }
-
 
 function sortHeader() {
     return {
@@ -25,13 +23,14 @@ function sortHeader() {
         },
         link: function($scope, $element, $attrs, ngModel) {
             $scope.$watch('sort', function() {
+
                 ngModel.$setViewValue($scope.sort);
-                if ($scope.onSort) {
+                if ($scope.onSort && $scope.sort.sort) {
                     $scope.onSort();
                 }
             });
         },
-        controller: sortHeaderController
+        controller: 'SortHeaderController'
     }
 }
 
@@ -48,7 +47,7 @@ function sortableColumn() {
             $scope.order = "asc";
 
             $scope.isActive = function() {
-                return (sortHeader.currentSort().sort === $scope.property);
+                return (sortHeader.getSort().sort === $scope.property);
             };
 
             $scope.sort = function() {
@@ -61,5 +60,6 @@ function sortableColumn() {
 }
 
 angular.module('angularGrails.directives.sort', [])
+    .controller('SortHeaderController', SortHeaderController)
     .directive('sortHeader', sortHeader)
     .directive('sortableColumn', sortableColumn);
