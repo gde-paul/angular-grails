@@ -22,7 +22,7 @@ describe('angularGrails fields: ', function() {
             scope.$digest();
             $httpBackend.flush();
 
-            directiveScope = element.isolateScope();
+            directiveScope = element.scope();
         });
 
         it('should set isOpened when open is called', function() {
