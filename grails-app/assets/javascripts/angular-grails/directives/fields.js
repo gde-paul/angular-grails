@@ -5,7 +5,7 @@
 
 function dateField() {
     return {
-        scope: {},
+        replace: true,
         link: function($scope) {
 
             $scope.open = function() {
