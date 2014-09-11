@@ -10,7 +10,7 @@ class BookEditPage extends Page {
         bookTitle {$("input[ng-model='ctrl.item.title']")}
         author {$("select[ng-model='ctrl.item.author']")}
         price {$("input[ng-model='ctrl.item.price']")}
-        publishDate {$("div[date-field] input")}
+        publishDate {$("input[ng-model='ctrl.item.publishDate']")}
         pageCount {$("input[ng-model='ctrl.item.pageCount']")}
 
         saveButton { $('button[crud-button="save"]') }
