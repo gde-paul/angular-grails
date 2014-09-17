@@ -17,9 +17,6 @@ project.ext {
 	karmaConfig = 'test/js/karma.conf.js'
 }
 
-version '0.8'
-group 'com.craigburke.angular'
-
 apply plugin: 'grails'
 apply plugin: 'com.moowork.node'
 
@@ -85,6 +82,11 @@ task jasmineWatch(type: NodeTask, dependsOn: 'setupJasmine') {
 
 test.dependsOn jasmineRun
 
+task ngGenerate(type: AngularGenerateTask) {
+	baseModule = angularModule
+	moduleName = project.hasProperty('ngModule') ? ngModule : ''
+}
+
 dependencies {
 	springloaded 'org.springframework:springloaded:1.1.5.RELEASE@jar'
 
@@ -114,5 +116,97 @@ dependencies {
 	
 	runtime('org.grails.plugins:hibernate4:4.1.11.7') {
     		exclude module: 'xml-apis'
+	}
+}
+
+
+class AngularGenerateTask extends DefaultTask {	
+	private String fullModule
+	private String modulePath
+	private String jsRoot
+	private String templatePath
+
+	String baseModule
+	String moduleName
+
+	@TaskAction
+	void generate() {
+		moduleName = formatModuleName(moduleName)
+		fullModule = "${baseModule}.${moduleName}"
+		modulePath = getModulePath(fullModule)
+                jsRoot = "grails-app/assets/javascripts"
+                templatePath = "${jsRoot}/templates/${modulePath}"
+	
+		createModule()
+		createTemplates()		
+		createApp()
+		setUrlMappings()
+	}
+
+	private String getModulePath(module) {
+		String path = module.replace('.', '/')
+		path = path.replaceAll(/([A-Z])/,/-$1/).toLowerCase().replaceAll(/^-/,'')
+		path.replaceAll(/\/-/, '/')
+	}
+
+	private String formatModuleName(module) {
+		module ? module[0].toLowerCase() + module.substring(1) : ''
+	}
+
+	def createModule() {
+		String resourceName = fullModule.tokenize('.').last()
+		String resourceUrl = "/api/${moduleName}"	
+		String destination = "${jsRoot}/${modulePath}"
+	
+		def props = [
+			resourceName: resourceName,
+                        modulePath: modulePath,
+                        moduleName: moduleName,
+                        baseModule: baseModule,
+                        resourceUrl: resourceUrl
+		]
+
+		project.copy {
+			from 'src/templates/angular/javascript'
+			include '*.js'
+			into destination
+			expand(	props )
+		}
+	}
+
+	def createTemplates() {
+		String destination = templatePath
+
+		project.copy {
+  			from 'src/templates/angular/templates'
+                	include '*.*'
+                	into destination
+		}
+	}
+
+	def createApp() {
+		def props = [fullModule: fullModule, modulePath: modulePath]
+		String fileName = "${moduleName}.gsp"
+
+		project.copy {
+			from 'src/templates/angular/page.gsp'
+			into 'grails-app/views/'
+			rename { fileName }
+			expand ( props )
+		}
+	
+	}
+
+	def setUrlMappings() {
+		String pageMapping = "'/${moduleName}'(view: '${moduleName}')"
+		String resourceMapping = "'/api/${moduleName}'(resources: '${moduleName}')"
+		String indent = "\t" * 2
+		String urlMapping = "\n${indent}${pageMapping}\n${indent}${resourceMapping}\n\n${indent}"
+
+		def mappingFile = project.file('grails-app/conf/UrlMappings.groovy')
+		
+		if (!mappingFile.text.contains(urlMapping)) {
+                	mappingFile.text = mappingFile.text.replaceAll(/(mappings\s*=\s*\{\s*\n*)/, "\$1${urlMapping}")
+		}
 	}
 }
