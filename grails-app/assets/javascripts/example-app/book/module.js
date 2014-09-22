@@ -1,16 +1,16 @@
 //= require_self
 //= require controllers
 //= require services
-//= require /authors/services
-//= require_tree /templates/example-app/books
+//= require /example-app/author/services
+//= require_tree /templates/example-app/book
 
 'use strict';
 
-angular.module('exampleApp.books', [
+angular.module('exampleApp.book', [
     'angularGrails',
-    'exampleApp.authors.services',
-    'exampleApp.books.controllers',
-    'exampleApp.books.services'
+    'exampleApp.author.services',
+    'exampleApp.book.controllers',
+    'exampleApp.book.services'
 ])
 .value('defaultCrudResource', 'BookResource')
 .config(function($routeProvider) {

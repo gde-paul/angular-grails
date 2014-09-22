@@ -126,7 +126,6 @@ class AngularGenerateTask extends DefaultTask {
 	private String modulePath
     private String resourceName
 	private String jsRoot
-	private String templatePath
 
 	String baseModule
 	String moduleName
@@ -136,11 +135,10 @@ class AngularGenerateTask extends DefaultTask {
 	void generate() {
 		moduleName = formatModuleName(moduleName)
 		fullModule = "${baseModule}.${moduleName}"
-		modulePath = getModulePath(fullModule)
+		modulePath = findModulePath(fullModule)
         resourceName = moduleName[0].toUpperCase() + moduleName.substring(1)
 
         jsRoot = "grails-app/assets/javascripts"
-        templatePath = "${jsRoot}/templates/${modulePath}"
 
 		createModule()
 		createTemplates()		
@@ -148,10 +146,10 @@ class AngularGenerateTask extends DefaultTask {
 		setUrlMappings()
 	}
 
-	private String getModulePath(module) {
+	private String findModulePath(module) {
 		String path = module.replace('.', '/')
 		path = path.replaceAll(/([A-Z])/,/-$1/).toLowerCase().replaceAll(/^-/,'')
-		path.replaceAll(/\/-/, '/')
+		path.replaceAll(/\/-/, '/') + '/'
 	}
 
 	private String formatModuleName(module) {
@@ -162,12 +160,12 @@ class AngularGenerateTask extends DefaultTask {
 		String defaultResource = "${resourceName}Resource"
 		String resourceUrl = "/api/${moduleName}"	
 		String destination = "${jsRoot}/${modulePath}"
-	
+
 		def props = [
 			resourceName: resourceName,
 			defaultResource: defaultResource,
+            moduleName: fullModule,
             modulePath: modulePath,
-            moduleName: moduleName,
             baseModule: baseModule,
             resourceUrl: resourceUrl
 		]
@@ -181,12 +179,14 @@ class AngularGenerateTask extends DefaultTask {
 	}
 
 	def createTemplates() {
-		String destination = templatePath
+        String destination = "${jsRoot}/templates/${modulePath}"
+        def props = [resourceName: resourceName]
 
 		project.copy {
   			from 'src/templates/angular/templates'
             include '*.*'
             into destination
+            expand (props)
 		}
 	}
 

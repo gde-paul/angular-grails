@@ -2,9 +2,10 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <asset:javascript src="books/module.js"/>
+    <asset:javascript src="example-app/author/module"/>
 </head>
 
-<body ng-app="exampleApp.books">
+<body ng-app="exampleApp.author">
+
 </body>
 </html>

@@ -4,5 +4,5 @@ function AuthorResource(CrudResourceFactory) {
     return CrudResourceFactory('/api/author', 'Author');
 }
 
-angular.module('exampleApp.authors.services', ['angularGrails'])
+angular.module('exampleApp.author.services', ['angularGrails'])
     .factory('AuthorResource', AuthorResource);

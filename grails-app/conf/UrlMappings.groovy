@@ -1,11 +1,10 @@
 class UrlMappings {
 
 	static mappings = {
-
-        "/books"(view:'books')
+		"/book"(view:'book')
         "/api/book"(resources: 'book')
 
-        "/authors"(view:'authors')
+        "/author"(view:'author')
         "/api/author"(resources: 'author')
 
         "/$controller/$action?/$id?(.$format)?"{

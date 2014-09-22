@@ -4,5 +4,5 @@ function BookResource(CrudResourceFactory) {
     return CrudResourceFactory('/api/book', 'Book');
 }
 
-angular.module('exampleApp.books.services', ['angularGrails'])
+angular.module('exampleApp.book.services', ['angularGrails'])
     .factory('BookResource', BookResource);

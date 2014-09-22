@@ -1,4 +1,4 @@
-<h2>Books</h2>
+<h2>${resourceName} List</h2>
 <div flash-message ></div>
 
 <p><button crud-button="create" ></button></p>
@@ -7,13 +7,11 @@
 
     <thead sort-header ng-model="ctrl.sort" on-sort="ctrl.reload()">
         <th sortable-column title="Id" property="id"></th>
-	<!-- Add additional columns -->
         <th>&nbsp;</th>
     </thead>
     <tbody>
         <tr ng-repeat="item in ctrl.items">
             <td><a href="#/show/{{item.id}}">{{item.id}}</a></td>
-	    <!-- Add additional columns -->
             <td>
                 <button crud-button="edit" item="item" ></button>
                 <button crud-button="delete" item="item" after-action="ctrl.reload()"></button>

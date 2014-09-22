@@ -5,6 +5,6 @@ function CreateEditCtrl(item, authors) {
     self.authors = authors;
 }
 
-angular.module('exampleApp.books.controllers', ['angularGrails'])
+angular.module('exampleApp.book.controllers', ['angularGrails'])
     .controller('CreateEditCtrl', CreateEditCtrl);
 
