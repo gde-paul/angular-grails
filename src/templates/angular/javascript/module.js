@@ -4,16 +4,16 @@
 
 'use strict';
 angular.module('${moduleName}', ['${baseModule}', '${moduleName}.services'])
-.value('defaultCrudResource', '${resourceName}')
+.value('defaultCrudResource', '${defaultResource}')
 .config(function(<%='$routeProvider'%>) {
 <%='$routeProvider'%>
         .when('/', {
             controller: 'DefaultListCtrl as ctrl',
             templateUrl: 'list.html',
             resolve: {
-                items: function(\$route, ${resourceName}) {
+                items: function(\$route, ${defaultResource}) {
                     var params = \$route.current.params;
-                    return ${resourceName}.list(params);
+                    return ${defaultResource}.list(params);
                 }
             }
         })
@@ -21,8 +21,8 @@ angular.module('${moduleName}', ['${baseModule}', '${moduleName}.services'])
             controller: 'DefaultCreateEditCtrl as ctrl',
             templateUrl: 'create-edit.html',
             resolve: {
-                item: function(${resourceName}) {
-                    return ${resourceName}.create();
+                item: function(${defaultResource}) {
+                    return ${defaultResource}.create();
                 }
             }
         })
@@ -30,9 +30,9 @@ angular.module('${moduleName}', ['${baseModule}', '${moduleName}.services'])
             controller: 'DefaultCreateEditCtrl as ctrl',
             templateUrl: 'create-edit.html',
             resolve: {
-                item: function(\$route, ${resourceName}) {
+                item: function(\$route, ${defaultResource}) {
                     var id = \$route.current.params.id;
-                    return ${resourceName}.get(id);
+                    return ${defaultResource}.get(id);
                 }
             }
         })
@@ -40,9 +40,9 @@ angular.module('${moduleName}', ['${baseModule}', '${moduleName}.services'])
             controller: 'DefaultShowCtrl as ctrl',
             templateUrl: 'show.html',
             resolve: {
-                item: function(\$route, ${resourceName}) {
+                item: function(\$route, ${defaultResource}) {
                     var id = \$route.current.params.id;
-                    return ${resourceName}.get(id);
+                    return ${defaultResource}.get(id);
                 }
             }
         })
