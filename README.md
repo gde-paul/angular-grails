@@ -38,24 +38,10 @@ class BookController extends AngularController {
 ```
 ## Grails Plugins
 
-This project makes use of the Asset Pipeline along with two AngularJs specfic asset pipeline plugins that I developed:
+This project makes use of the Asset Pipeline along with two AngularJs specific asset pipeline plugins that I developed:
 
 * [Angular Template Asset Pipeline](https://github.com/craigburke/angular-template-asset-pipeline)
 * [Angular Annotate Asset Pipeline](https://github.com/craigburke/angular-annotate-asset-pipeline)
-
-The Angular Template Asset Pipeline plugin works with the excellent [Fields plugin](https://github.com/gpc/grails-fields), and you'll see that I've made heavy use of that. 
-
-For example, the create-edit template contains the following and provides customized rendering for each data type:
-
-```html
-<f:with bean="${new Book()}">
-    <f:field property="title" input-ng-model="item.title" />
-    <f:field property="author" input-ng-model="item.author" input-ng-options="author as author.lastName for author in authors track by author.id"  />
-    <f:field property="price" input-ng-model="item.price"  />
-    <f:field property="publishDate" input-ng-model="item.publishDate" />
-    <f:field property="pageCount" input-ng-model="item.pageCount"  />
-</f:with>
-```
 
 ## The AngularJS angularGrails module
 This project includes an AngularJS module called **angularGrails** that you can include as a dependency in your own angular modules.

@@ -1,0 +1,36 @@
+<h2>
+    <span ng-hide="ctrl.item.id">Create Book</span>
+    <span ng-show="ctrl.item.id">Edit Book: {{ctrl.item.title}}</span>
+</h2>
+
+<div flash-message ></div>
+
+<form name="form" class="form-horizontal" role="form" novalidate>
+
+    <div field-container label="Title" invalid="form.title.$invalid">
+        <input name="title" ng-model="ctrl.item.title" required />
+    </div>
+
+    <div field-container label="Author" invalid="form.author.$invalid">
+        <select name="author" ng-model="ctrl.item.author" ng-options="author.firstName + ' ' + author.lastName for author in ctrl.authors track by author.id" required ></select>
+    </div>
+
+    <div field-container label="Price" invalid="form.price.$invalid">
+        <input name="price" type="number" ng-model="ctrl.item.price" required />
+    </div>
+
+    <div field-container label="Publish Date" invalid="form.publishDate.$invalid">
+        <input name="publishDate" date-field ng-model="ctrl.item.publishDate" required />
+    </div>
+
+    <div field-container label="Page Count" invalid="form.pageCount.$invalid">
+        <input name="pageCount" type="number" ng-model="ctrl.item.pageCount" required />
+    </div>
+
+    <div>
+        <button crud-button="save" item="ctrl.item" is-disabled="form.$invalid"></button>
+        <button crud-button="cancel"></button>
+    </div>
+
+</form>
+

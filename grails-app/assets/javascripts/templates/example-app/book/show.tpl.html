@@ -1,0 +1,18 @@
+<h2>Show Book: {{ctrl.item.title}}</h2>
+<div flash-message ></div>
+
+<table class="table table-bordered">
+<tbody>
+    <tr display-field label="Title" value="ctrl.item.title"></tr>
+    <tr display-field label="Author" value="ctrl.item.author.firstName + ' ' + ctrl.item.author.lastName"></tr>
+    <tr display-field label="Title" value="ctrl.item.title"></tr>
+    <tr display-field label="Price" value="ctrl.item.price | currency"></tr>
+    <tr display-field label="Publish Date" value="ctrl.item.publishDate | date: 'medium'"></tr>
+    <tr display-field label="Page Count" value="ctrl.item.pageCount | number" ></tr>
+</tbody>
+</table>
+
+<div class="form-actions">
+    <button crud-button="edit" item="ctrl.item"></button>
+    <button crud-button="cancel" ></button>
+</div>

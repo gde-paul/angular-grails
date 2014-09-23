@@ -1,13 +1,9 @@
-<%@ Page import="com.craigburke.angular.Author" %>
-
 <h2>Show Author: {{ctrl.item.firstName}} {{ctrl.item.lastName}}</h2>
 <div flash-message ></div>
 
 <table class="table table-bordered">
-    <f:with bean="${new Author()}">
-        <f:display property="firstName">ctrl.item.firstName</f:display>
-        <f:display property="lastName">ctrl.item.lastName</f:display>
-    </f:with>
+    <tr display-field label="First Name" value="ctrl.item.firstName"></tr>
+    <tr display-field label="Last Name" value="ctrl.item.lastName"></tr>
 </table>
 
 <div class="form-actions">
