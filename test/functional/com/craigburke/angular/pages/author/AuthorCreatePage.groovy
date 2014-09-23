@@ -4,7 +4,7 @@ import geb.Page
 
 class AuthorCreatePage extends Page {
 
-    static url = "authors#/create"
+    static url = "author#/create"
 
     static at = { $('h2').text() == 'Create Author' }
 

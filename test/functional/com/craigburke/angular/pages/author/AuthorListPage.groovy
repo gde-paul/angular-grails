@@ -5,7 +5,7 @@ import geb.Page
 
 class AuthorListPage extends Page {
 
-    static url = "authors#/"
+    static url = "author#/"
 
     static at = { $('h2').text() == 'Authors' }
 
