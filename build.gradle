@@ -20,6 +20,8 @@ project.ext {
 apply plugin: 'grails'
 apply plugin: 'com.moowork.node'
 
+apply plugin: 'eclipse'
+
 repositories {
 	grails.central()
 }

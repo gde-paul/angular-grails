@@ -1,12 +1,17 @@
 **/.DS_Store
 
 # IDEA
-.classpath
-.project
 *.iml
 *.ipr
 *.iws
-.idea
+.
+
+# Eclipse (GGTS)
+.classpath
+.project
+.settings
+target-eclipse
+
 
 # Grails
 target
