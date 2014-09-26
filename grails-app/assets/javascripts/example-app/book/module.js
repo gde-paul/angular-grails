@@ -1,9 +1,11 @@
 //= require_self
 //= require services
+//= require controllers
+//= require /example-app/author/services
 //= require_tree /example-app/book/templates/
 
 'use strict';
-angular.module('exampleApp.book', ['grails', 'exampleApp.book.services'])
+angular.module('exampleApp.book', ['grails', 'exampleApp.author.services', 'exampleApp.book.services', 'exampleApp.book.controllers'])
 .value('defaultCrudResource', 'BookResource')
 .config(function($routeProvider) {
 $routeProvider
@@ -18,22 +20,28 @@ $routeProvider
             }
         })
         .when('/create', {
-            controller: 'DefaultCreateEditCtrl as ctrl',
+            controller: 'CreateEditCtrl as ctrl',
             templateUrl: 'create-edit.html',
             resolve: {
                 item: function(BookResource) {
                     return BookResource.create();
-                }
+                },
+				authors: function(AuthorResource) {
+					return AuthorResource.list();
+				}
             }
         })
         .when('/edit/:id', {
-            controller: 'DefaultCreateEditCtrl as ctrl',
+            controller: 'CreateEditCtrl as ctrl',
             templateUrl: 'create-edit.html',
             resolve: {
                 item: function($route, BookResource) {
                     var id = $route.current.params.id;
                     return BookResource.get(id);
-                }
+                },
+				authors: function(AuthorResource) {
+					return AuthorResource.list();
+				}
             }
         })
         .when('/show/:id', {

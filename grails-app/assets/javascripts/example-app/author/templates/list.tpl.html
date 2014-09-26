@@ -8,23 +8,19 @@
     <thead sort-header ng-model="ctrl.sort" on-sort="ctrl.reload()">
         <th sortable-column title="Id" property="id"></th>
 		
-		<th sortable-column title="First Name" property="firstName"></th>
-		
 		<th sortable-column title="Last Name" property="lastName"></th>
-		
+				
         <th>&nbsp;</th>
     </thead>
     <tbody>
         <tr ng-repeat="item in ctrl.items">
             <td><a href="#/show/{{item.id}}">{{item.id}}</a></td>
 			
-			<td>{{ item.firstName }}</td>
-			
-			<td>{{ item.lastName }}</td>
+			<td>{{ item.firstName }} {{ item.lastName }}</td>
 			
             <td>
-                <button crud-button="edit" item="item" ></button>
-                <button crud-button="delete" item="item" after-action="ctrl.reload()"></button>
+                <a crud-button="edit" item="item" ></a>
+                <a crud-button="delete" item="item" after-action="ctrl.reload()"></a>
             </td>
         </tr>
     </tbody>

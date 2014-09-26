@@ -5,9 +5,9 @@ import geb.Page
 
 class BookListPage extends Page {
 
-    static url = "book#/"
+    static url = "book"
 
-    static at = { $('h2').text() == 'Books' }
+    static at = { $('h2').text() == 'Book List' }
 
     static content = {
         createButton { $('a[crud-button="create"]') }

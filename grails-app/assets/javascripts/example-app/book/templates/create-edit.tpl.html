@@ -12,7 +12,7 @@
 	</div>
 
 	<div field-container label="Author" invalid="form.author.$invalid">
-		<input name="author" type="text"  ng-model="ctrl.item.author" />
+        <select name="author" ng-model="ctrl.item.author" ng-options="author.firstName + ' ' + author.lastName for author in ctrl.authors track by author.id" required ></select>
 	</div>
 
 	<div field-container label="Publish Date" invalid="form.publishDate.$invalid">

@@ -5,9 +5,9 @@ import geb.Page
 
 class AuthorListPage extends Page {
 
-    static url = "author#/"
+    static url = "author"
 
-    static at = { $('h2').text() == 'Authors' }
+    static at = { $('h2').text() == 'Author List' }
 
     static content = {
         createButton { $('a[crud-button="create"]') }

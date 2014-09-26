@@ -17,8 +17,8 @@
 
 
     <div>
-        <button crud-button="save" item="ctrl.item" is-disabled="form.$invalid"></button>
-        <button crud-button="cancel"></button>
+        <a crud-button="save" item="ctrl.item" is-disabled="form.$invalid"></a>
+        <span ng-if="ctrl.item.id"><a crud-button="delete" item="ctrl.item"></a></span>
     </div>
 
 </form>
