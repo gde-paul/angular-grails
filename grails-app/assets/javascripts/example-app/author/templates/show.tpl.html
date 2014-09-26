@@ -1,10 +1,12 @@
-<h2>Show ${resourceName}</h2>
+<h2>Show Author</h2>
 <div flash-message ></div>
 
 <table class="table table-bordered">
-<% domainProperties.each { property -> %>
-    <tr display-field label="${property.label}" value="ctrl.item.${property.name}"></tr>
-<% } %>
+
+    <tr display-field label="First Name" value="ctrl.item.firstName"></tr>
+
+    <tr display-field label="Last Name" value="ctrl.item.lastName"></tr>
+
 
 </table>
 

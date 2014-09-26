@@ -1,12 +1,12 @@
 //= require_self
 //= require services
-//= require_tree /templates/example-app/author
+//= require_tree /example-app/author/templates/
 
 'use strict';
-angular.module('exampleApp.author', ['angularGrails', 'exampleApp.author.services'])
+angular.module('exampleApp.author', ['grails', 'exampleApp.author.services'])
 .value('defaultCrudResource', 'AuthorResource')
 .config(function($routeProvider) {
-    $routeProvider
+$routeProvider
         .when('/', {
             controller: 'DefaultListCtrl as ctrl',
             templateUrl: 'list.html',

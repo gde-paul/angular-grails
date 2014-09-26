@@ -1,4 +1,3 @@
-<%@ page import="com.craigburke.angular.Book" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -48,7 +47,7 @@
 
             <p>This is an example app that uses both AngularJs and Grails together while trying to take advantage of what each has to offer.</p>
 
-            <p>This app features are all kinds of supporting directives and services contained within an Angular module named <strong>angularGrails</strong></p>
+            <p>This app features are all kinds of supporting directives and services contained within an Angular module named <strong>grailsCrud</strong></p>
 
             <p>It also shows how to use Fields plugin along with the Asset Pipeline Template plugin to render your angular templates.</p>
 

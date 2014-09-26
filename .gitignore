@@ -1,17 +1,18 @@
+# General
 **/.DS_Store
 
-# IDEA
+# IDEs
+## IDEA
 *.iml
 *.ipr
 *.iws
 .idea
 
-# Eclipse (GGTS)
+## Eclipse (GGTS)
 .classpath
 .project
 .settings
 target-eclipse
-
 
 # Grails
 target
@@ -23,3 +24,7 @@ out
 node_modules
 build
 buildPlugins
+buildSrc/build
+
+# Lazybones
+.lazybones

@@ -1,20 +1,12 @@
 //= require_self
-//= require controllers
 //= require services
-//= require /example-app/author/services
-//= require_tree /templates/example-app/book
+//= require_tree /example-app/book/templates/
 
 'use strict';
-
-angular.module('exampleApp.book', [
-    'angularGrails',
-    'exampleApp.author.services',
-    'exampleApp.book.controllers',
-    'exampleApp.book.services'
-])
+angular.module('exampleApp.book', ['grails', 'exampleApp.book.services'])
 .value('defaultCrudResource', 'BookResource')
 .config(function($routeProvider) {
-    $routeProvider
+$routeProvider
         .when('/', {
             controller: 'DefaultListCtrl as ctrl',
             templateUrl: 'list.html',
@@ -26,27 +18,21 @@ angular.module('exampleApp.book', [
             }
         })
         .when('/create', {
-            controller: 'CreateEditCtrl as ctrl',
+            controller: 'DefaultCreateEditCtrl as ctrl',
             templateUrl: 'create-edit.html',
             resolve: {
                 item: function(BookResource) {
                     return BookResource.create();
-                },
-                authors: function(AuthorResource) {
-                    return AuthorResource.list();
                 }
             }
         })
         .when('/edit/:id', {
-            controller: 'CreateEditCtrl as ctrl',
+            controller: 'DefaultCreateEditCtrl as ctrl',
             templateUrl: 'create-edit.html',
             resolve: {
                 item: function($route, BookResource) {
                     var id = $route.current.params.id;
                     return BookResource.get(id);
-                },
-                authors: function(AuthorResource) {
-                    return AuthorResource.list();
                 }
             }
         })

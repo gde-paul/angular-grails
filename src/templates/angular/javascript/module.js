@@ -1,9 +1,9 @@
 //= require_self
 //= require services
-//= require_tree /templates/${modulePath}
+//= require_tree /${modulePath}/templates/
 
 'use strict';
-angular.module('${moduleName}', ['angularGrails', '${moduleName}.services'])
+angular.module('${moduleName}', ['grails', '${moduleName}.services'])
 .value('defaultCrudResource', '${defaultResource}')
 .config(function(<%='$routeProvider'%>) {
 <%='$routeProvider'%>
