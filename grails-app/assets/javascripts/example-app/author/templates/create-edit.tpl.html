@@ -8,11 +8,11 @@
 <form name="form" class="form-horizontal" role="form" novalidate>
 
 	<div field-container label="First Name" invalid="form.firstName.$invalid">
-		<input name="firstName" ng-model="ctrl.item.firstName" />
+		<input name="firstName" ng-model="ctrl.item.firstName" required />
 	</div>
 
 	<div field-container label="Last Name" invalid="form.lastName.$invalid">
-		<input name="lastName" ng-model="ctrl.item.lastName" />
+		<input name="lastName" ng-model="ctrl.item.lastName" required />
 	</div>
 
 

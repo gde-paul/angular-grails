@@ -8,7 +8,7 @@
 <form name="form" class="form-horizontal" role="form" novalidate>
 
 	<div field-container label="Title" invalid="form.title.$invalid">
-		<input name="title" type="text"  ng-model="ctrl.item.title" />
+		<input name="title" type="text"  ng-model="ctrl.item.title" required />
 	</div>
 
 	<div field-container label="Author" invalid="form.author.$invalid">
@@ -16,21 +16,21 @@
 	</div>
 
 	<div field-container label="Publish Date" invalid="form.publishDate.$invalid">
-		<input name="publishDate" type="text" date-field ng-model="ctrl.item.publishDate" />
+		<input name="publishDate" type="text" date-field ng-model="ctrl.item.publishDate" required />
 	</div>
 
 	<div field-container label="Page Count" invalid="form.pageCount.$invalid">
-		<input name="pageCount" type="number"  ng-model="ctrl.item.pageCount" />
+		<input name="pageCount" type="number"  ng-model="ctrl.item.pageCount" required />
 	</div>
 
 	<div field-container label="Price" invalid="form.price.$invalid">
-		<input name="price" type="number"  ng-model="ctrl.item.price" />
+		<input name="price" type="number"  ng-model="ctrl.item.price" required />
 	</div>
 
 
     <div>
-        <button crud-button="save" item="ctrl.item" is-disabled="form.$invalid"></button>
-        <button crud-button="cancel"></button>
+        <a crud-button="save" item="ctrl.item" is-disabled="form.$invalid"></a>
+        <span ng-if="ctrl.item.id"><a crud-button="delete" item="ctrl.item"></a></span>
     </div>
 
 </form>
