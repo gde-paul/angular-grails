@@ -5,7 +5,7 @@
 //= require_tree /example-app/book/templates/
 
 'use strict';
-angular.module('exampleApp.book', ['grails', 'exampleApp.author.services', 'exampleApp.book.services', 'exampleApp.book.controllers'])
+angular.module('exampleApp.book', ['grails', 'exampleApp.author.services', 'exampleApp.book.controllers', 'exampleApp.book.services'])
 .value('defaultCrudResource', 'BookResource')
 .config(function($routeProvider) {
 $routeProvider

@@ -1,3 +1,4 @@
+<div crud-breadcrumbs="{{ctrl.item.id ? 'edit' : 'create'}}"></div>
 <h2>
     <span ng-hide="ctrl.item.id">Create Book</span>
     <span ng-show="ctrl.item.id">Edit Book</span>
@@ -29,8 +30,8 @@
 
 
     <div>
-        <a crud-button="save" item="ctrl.item" is-disabled="form.$invalid"></a>
-        <span ng-if="ctrl.item.id"><a crud-button="delete" item="ctrl.item"></a></span>
+        <button crud-button="save" item="ctrl.item" is-disabled="form.$invalid"></button>
+        <span ng-if="ctrl.item.id"><button crud-button="delete" item="ctrl.item"></button></span>
     </div>
 
 </form>

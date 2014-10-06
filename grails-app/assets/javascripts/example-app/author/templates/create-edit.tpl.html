@@ -1,3 +1,4 @@
+<div crud-breadcrumbs="{{ctrl.item.id ? 'edit' : 'create'}}"></div>
 <h2>
     <span ng-hide="ctrl.item.id">Create Author</span>
     <span ng-show="ctrl.item.id">Edit Author</span>
@@ -8,17 +9,17 @@
 <form name="form" class="form-horizontal" role="form" novalidate>
 
 	<div field-container label="First Name" invalid="form.firstName.$invalid">
-		<input name="firstName" ng-model="ctrl.item.firstName" required />
+		<input name="firstName" type="text"  ng-model="ctrl.item.firstName" required />
 	</div>
 
 	<div field-container label="Last Name" invalid="form.lastName.$invalid">
-		<input name="lastName" ng-model="ctrl.item.lastName" required />
+		<input name="lastName" type="text"  ng-model="ctrl.item.lastName" required />
 	</div>
 
 
     <div>
-        <a crud-button="save" item="ctrl.item" is-disabled="form.$invalid"></a>
-        <span ng-if="ctrl.item.id"><a crud-button="delete" item="ctrl.item"></a></span>
+        <button crud-button="save" item="ctrl.item" is-disabled="form.$invalid"></button>
+        <span ng-if="ctrl.item.id"><button crud-button="delete" item="ctrl.item"></button></span>
     </div>
 
 </form>

@@ -58,7 +58,6 @@ environments {
     }
     test {
         grails.assets.minifyJs = true
-		grails.serverUrl="http://localhost:8080/angular-grails"
     }
 
     production {

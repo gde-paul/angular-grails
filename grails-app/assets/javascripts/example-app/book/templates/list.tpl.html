@@ -1,3 +1,4 @@
+<div crud-breadcrumbs="list"></div>
 <h2>Book List</h2>
 <div flash-message ></div>
 
@@ -8,14 +9,13 @@
     <thead sort-header ng-model="ctrl.sort" on-sort="ctrl.reload()">
         <th sortable-column title="Id" property="id"></th>
 		
-		<th sortable-column title="Author" property="author.lastName"></th>
-		
-		
 		<th sortable-column title="Title" property="title"></th>
-				
+		
+		<th sortable-column title="Author" property="author"></th>
+		
 		<th sortable-column title="Publish Date" property="publishDate"></th>
 		
-		<th sortable-column title="Price" property="price"></th>
+		<th sortable-column title="Page Count" property="pageCount"></th>
 		
         <th>&nbsp;</th>
     </thead>
@@ -23,17 +23,17 @@
         <tr ng-repeat="item in ctrl.items">
             <td><a href="#/show/{{item.id}}">{{item.id}}</a></td>
 			
+			<td>{{ item.title }}</td>
+			
 			<td>{{ item.author.firstName }} {{ item.author.lastName }}</td>
 			
-			<td>{{ item.title }}</td>
-						
 			<td>{{ item.publishDate | date: 'medium' }}</td>
 			
-			<td>{{ item.price | currency }}</td>
+			<td>{{ item.pageCount | number }}</td>
 			
             <td>
-                <a crud-button="edit" item="item" ></a>
-                <a crud-button="delete" item="item" after-action="ctrl.reload()"></a>
+                <button crud-button="edit" item="item" ></button>
+                <button crud-button="delete" item="item" after-action="ctrl.reload()"></button>
             </td>
         </tr>
     </tbody>
