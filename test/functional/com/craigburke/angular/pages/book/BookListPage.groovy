@@ -21,7 +21,7 @@ class BookListRow extends Module {
 
     static content = {
         cell { $("td") }
-        bookTitle { cell[2].text() }
+        bookTitle { cell[1].text() }
         editButton {$("a[crud-button='edit']")}
         deleteButton {$("a[crud-button='delete']")}
     }

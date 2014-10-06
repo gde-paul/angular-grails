@@ -21,7 +21,8 @@ class AuthorListRow extends Module {
 
     static content = {
         cell { $("td") }
-        name { cell[1].text() }
+        firstName { cell[1].text() }
+		lastName { cell[2].text() }
         editButton {$("a[crud-button='edit']")}
         deleteButton {$("a[crud-button='delete']")}
     }

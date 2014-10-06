@@ -51,7 +51,7 @@ class AuthorFunctionalSpec extends GebReportingSpec {
         to AuthorListPage
 
         and:
-        rows.find {it.name == "Foo Bar"}.editButton.click()
+        rows.find {it.firstName == "Foo" && it.lastName == "Bar"}.editButton.click()
 
         then:
         at AuthorEditPage
@@ -88,7 +88,7 @@ class AuthorFunctionalSpec extends GebReportingSpec {
         to AuthorListPage
 
         and:
-        rows.find {it.name == "Foo Bar!" }.deleteButton.click()
+        rows.find {it.firstName == "Foo" && it.lastName == "Bar!"}.deleteButton.click()
 
         then:
         at AuthorListPage
