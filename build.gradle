@@ -97,16 +97,16 @@ dependencies {
 	test "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
 	test "org.gebish:geb-spock:$gebVersion"
 	test "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
+	runtime "com.bertramlabs.plugins:sass-asset-pipeline:2.0.2"
 
 	def plugins = [
 		[name: 'tomcat', version: '7.0.55', scope: 'bootstrap'],
 		[name: 'scaffolding', version: '2.1.2'],
 		[name: 'cache', version: '1.1.6'],
-		[name: 'asset-pipeline', version: '1.9.9'],
+		[name: 'asset-pipeline', version: '2.1.1'],
 		[name: 'fields', version: '1.4'],
-		[name: 'sass-asset-pipeline', version: '1.9.0'],
-		[name: 'angular-template-asset-pipeline', version: '1.3.0'],
-		[name: 'angular-annotate-asset-pipeline', version: '1.1.1'],
+		[name: 'angular-template-asset-pipeline', version: '2.0.4'],
+		[name: 'angular-annotate-asset-pipeline', version: '2.0.3'],
 		[name: 'geb', version: gebVersion, scope: 'test']
 	]
 
